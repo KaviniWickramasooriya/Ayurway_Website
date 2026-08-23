@@ -29,7 +29,7 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
+  // Lock body scroll and reset scroll position when mobile menu opens
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
@@ -145,14 +145,14 @@ export function SiteHeader() {
           </button>
 
           {/* Mobile Menu Toggle */}
-          <button onClick={() => setOpen((v) => !v)} aria-label="Toggle menu" className={`md:hidden transition-colors ${tone} z-50 relative`}>
+          <button onClick={() => setOpen((v) => !v)} aria-label="Toggle menu" className={`md:hidden transition-colors ${tone} z-[110] relative`}>
             {open ? <X size={24} strokeWidth={1.2} /> : <Menu size={24} strokeWidth={1.2} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Luxury Overlay (Fixed full-screen container that prevents background scrolling) */}
-      <div className={`fixed inset-0 bg-forest-deep z-40 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] md:hidden flex flex-col items-center justify-center ${open ? 'translate-y-0 opacity-100 pointer-events-auto' : '-translate-y-full opacity-0 pointer-events-none'}`}>
+      {/* Mobile Luxury Overlay (Using z-[100] and fixed positioning to completely cover screen from top to bottom regardless of scroll position) */}
+      <div className={`fixed inset-0 h-screen w-screen bg-forest-deep z-[100] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] md:hidden flex flex-col items-center justify-center ${open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none translate-y-[-100vh]'}`}>
         <div className="flex flex-col items-center justify-center space-y-8 px-6 text-center">
           <Link to="/" onClick={() => setOpen(false)} className={`font-display text-2xl tracking-widest transition-colors ${location.pathname === "/" ? "text-gold italic" : "text-ivory hover:text-gold"}`}>Home</Link>
           <Link to="/products" onClick={() => setOpen(false)} className={`font-display text-2xl tracking-widest transition-colors ${location.pathname === "/products" ? "text-gold italic" : "text-ivory hover:text-gold"}`}>Collection</Link>
