@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+@theme {
+  /* Ultra-Premium Ayurway Palette */
+  --color-background: #F9F8F6;
+  --color-foreground: #1A2B22;
+  --color-border: #E8E5DF;
+  --color-forest: #233D2D;
+  --color-forest-deep: #122118;
+  --color-gold: #C2A362;
+  --color-gold-soft: #E6D8B8;
+  --color-sand: #F2EFE9;
+  --color-ivory: #FDFCFB;
+  --color-clay: #A67C63;
+  
+  /* Editorial Typography */
+  --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-sans: "Jost", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background-color: var(--color-gold);
+    color: var(--color-forest-deep);
+  }
+
+  /* Luxury Form Autofill Reset (Prevents Chrome's default yellow/blue background on contact forms) */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus, 
+  input:-webkit-autofill:active,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  textarea:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 50px var(--color-ivory) inset !important;
+    -webkit-text-fill-color: var(--color-forest-deep) !important;
+    transition: background-color 5000s ease-in-out 0s;
+    font-family: var(--font-sans);
+  }
+}
+
+@layer utilities {
+  .eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: var(--color-gold);
+  }
+  
+  .text-gold-gradient {
+    background: linear-gradient(135deg, var(--color-gold), var(--color-clay));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .hero-veil {
+    background: linear-gradient(to top, rgba(18, 33, 24, 0.9) 0%, rgba(18, 33, 24, 0.3) 50%, rgba(18, 33, 24, 0.6) 100%);
+  }
+  
+  /* Delicate luxury card styling for About Us / Story page */
+  .luxe-card {
+    background: var(--color-ivory);
+    border: 1px solid var(--color-border);
+    transition: all 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .luxe-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 40px 80px -30px rgba(19, 36, 26, 0.12);
+    border-color: var(--color-gold-soft);
+  }
+  
+  /* Cinematic Scroll Reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+    transition: opacity 1200ms cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 1200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal[data-visible="true"] {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* Slow Infinite Marquee */
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 45s linear infinite;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Subtle UI Pulse */
+  .cart-pulse {
+    animation: cart-pulse 1000ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes cart-pulse {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.15) translateY(-2px); }
+    100% { transform: scale(1); }
+  }
+
+  /* Search & Form Custom Animation Easing */
+  .search-expand {
+    transition: width 600ms cubic-bezier(0.16, 1, 0.3, 1), opacity 400ms ease;
+  }
+  
+  .luxe-input-label {
+    transition: all 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Scrollbars hiding */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
