@@ -29,6 +29,18 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [open]);
+
   // Focus search input when opened
   useEffect(() => {
     if (searchOpen && searchInputRef.current) {
@@ -133,15 +145,15 @@ export function SiteHeader() {
           </button>
 
           {/* Mobile Menu Toggle */}
-          <button onClick={() => setOpen((v) => !v)} aria-label="Toggle menu" className={`md:hidden transition-colors ${tone}`}>
+          <button onClick={() => setOpen((v) => !v)} aria-label="Toggle menu" className={`md:hidden transition-colors ${tone} z-50 relative`}>
             {open ? <X size={24} strokeWidth={1.2} /> : <Menu size={24} strokeWidth={1.2} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Luxury Overlay (Reduced font sizes for mobile viewports) */}
-      <div className={`fixed inset-0 bg-forest-deep z-40 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] md:hidden ${open ? 'translate-y-0' : '-translate-y-full'}`}>
-        <div className="flex flex-col items-center justify-center h-full space-y-8 px-6 text-center">
+      {/* Mobile Luxury Overlay (Fixed full-screen container that prevents background scrolling) */}
+      <div className={`fixed inset-0 bg-forest-deep z-40 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] md:hidden flex flex-col items-center justify-center ${open ? 'translate-y-0 opacity-100 pointer-events-auto' : '-translate-y-full opacity-0 pointer-events-none'}`}>
+        <div className="flex flex-col items-center justify-center space-y-8 px-6 text-center">
           <Link to="/" onClick={() => setOpen(false)} className={`font-display text-2xl tracking-widest transition-colors ${location.pathname === "/" ? "text-gold italic" : "text-ivory hover:text-gold"}`}>Home</Link>
           <Link to="/products" onClick={() => setOpen(false)} className={`font-display text-2xl tracking-widest transition-colors ${location.pathname === "/products" ? "text-gold italic" : "text-ivory hover:text-gold"}`}>Collection</Link>
           <Link to="/story" onClick={() => setOpen(false)} className={`font-display text-2xl tracking-widest transition-colors ${location.pathname === "/story" ? "text-gold italic" : "text-ivory hover:text-gold"}`}>About us</Link>
