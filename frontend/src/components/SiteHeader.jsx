@@ -29,7 +29,7 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock body scroll and reset scroll position when mobile menu opens
+  // Lock body scroll when mobile menu opens
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
@@ -144,14 +144,14 @@ export function SiteHeader() {
             )}
           </button>
 
-          {/* Mobile Menu Toggle */}
-          <button onClick={() => setOpen((v) => !v)} aria-label="Toggle menu" className={`md:hidden transition-colors ${tone} z-[110] relative`}>
+          {/* Mobile Menu Toggle (Given z-[120] so it always sits above the overlay) */}
+          <button onClick={() => setOpen((v) => !v)} aria-label="Toggle menu" className={`md:hidden transition-colors ${open ? "text-ivory" : tone} z-[120] relative`}>
             {open ? <X size={24} strokeWidth={1.2} /> : <Menu size={24} strokeWidth={1.2} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Luxury Overlay (Using z-[100] and fixed positioning to completely cover screen from top to bottom regardless of scroll position) */}
+      {/* Mobile Luxury Overlay (z-[100]) */}
       <div className={`fixed inset-0 h-screen w-screen bg-forest-deep z-[100] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] md:hidden flex flex-col items-center justify-center ${open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none translate-y-[-100vh]'}`}>
         <div className="flex flex-col items-center justify-center space-y-8 px-6 text-center">
           <Link to="/" onClick={() => setOpen(false)} className={`font-display text-2xl tracking-widest transition-colors ${location.pathname === "/" ? "text-gold italic" : "text-ivory hover:text-gold"}`}>Home</Link>
