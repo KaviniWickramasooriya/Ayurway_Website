@@ -20,8 +20,6 @@ export function SiteHeader() {
   const navigate = useNavigate();
   
   const isProductsPage = location.pathname === "/products";
-  
-  // Only Checkout starts with a light background at the very top. Contact has a dark hero section.
   const isLightPage = location.pathname === "/checkout";
 
   useEffect(() => {
@@ -141,15 +139,15 @@ export function SiteHeader() {
         </div>
       </div>
 
-      {/* Mobile Luxury Overlay */}
+      {/* Mobile Luxury Overlay (Reduced font sizes for mobile viewports) */}
       <div className={`fixed inset-0 bg-forest-deep z-40 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] md:hidden ${open ? 'translate-y-0' : '-translate-y-full'}`}>
-        <div className="flex flex-col items-center justify-center h-full space-y-10 px-6 text-center">
-          <Link to="/" onClick={() => setOpen(false)} className={`font-display text-4xl transition-colors ${location.pathname === "/" ? "text-gold italic" : "text-ivory hover:text-gold"}`}>Home</Link>
-          <Link to="/products" onClick={() => setOpen(false)} className={`font-display text-4xl transition-colors ${location.pathname === "/products" ? "text-gold italic" : "text-ivory hover:text-gold"}`}>The Apothecary</Link>
-          <Link to="/story" onClick={() => setOpen(false)} className={`font-display text-4xl transition-colors ${location.pathname === "/story" ? "text-gold italic" : "text-ivory hover:text-gold"}`}>The House</Link>
-          <Link to="/contact" onClick={() => setOpen(false)} className={`font-display text-4xl transition-colors ${location.pathname === "/contact" ? "text-gold italic" : "text-ivory hover:text-gold"}`}>Concierge</Link>
-          <div className="w-16 h-px bg-gold/50 my-6" />
-          <a href="mailto:info@ayurway.lk" onClick={() => setOpen(false)} className="text-xs uppercase tracking-[0.4em] text-gold-soft">info@ayurway.lk</a>
+        <div className="flex flex-col items-center justify-center h-full space-y-8 px-6 text-center">
+          <Link to="/" onClick={() => setOpen(false)} className={`font-display text-2xl tracking-widest transition-colors ${location.pathname === "/" ? "text-gold italic" : "text-ivory hover:text-gold"}`}>Home</Link>
+          <Link to="/products" onClick={() => setOpen(false)} className={`font-display text-2xl tracking-widest transition-colors ${location.pathname === "/products" ? "text-gold italic" : "text-ivory hover:text-gold"}`}>Collection</Link>
+          <Link to="/story" onClick={() => setOpen(false)} className={`font-display text-2xl tracking-widest transition-colors ${location.pathname === "/story" ? "text-gold italic" : "text-ivory hover:text-gold"}`}>About us</Link>
+          <Link to="/contact" onClick={() => setOpen(false)} className={`font-display text-2xl tracking-widest transition-colors ${location.pathname === "/contact" ? "text-gold italic" : "text-ivory hover:text-gold"}`}>Enquire</Link>
+          <div className="w-12 h-px bg-gold/50 my-4" />
+          <a href="mailto:info@ayurway.lk" onClick={() => setOpen(false)} className="text-[0.65rem] uppercase tracking-[0.35em] text-gold-soft">info@ayurway.lk</a>
         </div>
       </div>
     </header>
