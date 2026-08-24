@@ -10,9 +10,15 @@ import ritualImg from "../assets/ritual.jpg";
 import drIsharaImg from "../assets/dr ishara.jpg";
 import anuraImg from "../assets/mr anura.jpg"; 
 
+const WhatsAppIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+  </svg>
+);
+
 export default function StoryPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
       <SiteHeader />
 
       {/* Cinematic Hero Section */}
@@ -28,7 +34,6 @@ export default function StoryPage() {
             <p className="text-[0.65rem] uppercase tracking-[0.5em] text-gold">
               Established 2019
             </p>
-            {/* Reduced font size for luxury balance */}
             <h1 className="mt-4 max-w-4xl font-display text-4xl leading-tight text-ivory md:text-5xl lg:text-6xl">
               Harmonizing health and beauty with the <span className="italic text-gold-soft">wisdom of nature.</span>
             </h1>
@@ -100,7 +105,7 @@ export default function StoryPage() {
         </div>
       </section>
 
-      {/* Founders Section: Mr. Anura */}
+      {/* Founders Section: Mr. Anura (Full Image Displayed) */}
       <section className="bg-ivory py-20 md:py-28">
         <div className="mx-auto max-w-screen-2xl px-6 md:px-12">
           <div className="grid gap-16 lg:grid-cols-12 lg:items-center flex-col-reverse lg:flex-row">
@@ -133,15 +138,19 @@ export default function StoryPage() {
                 </div>
               </Reveal>
             </div>
+            
+            {/* Image container updated to object-contain with a neutral background framing to show the full picture */}
             <div className="lg:col-span-5 lg:col-start-8 order-1 lg:order-2 relative">
               <Reveal>
                 <div className="absolute -inset-4 bg-forest-deep/5 translate-y-6 translate-x-6 -z-10" />
-                <img
-                  src={anuraImg}
-                  alt="Mr. Anura Pathirana"
-                  loading="lazy"
-                  className="w-full h-[550px] object-cover shadow-xl"
-                />
+                <div className="w-full h-[550px] bg-sand flex items-center justify-center overflow-hidden shadow-xl border border-border">
+                  <img
+                    src={anuraImg}
+                    alt="Mr. Anura Pathirana"
+                    loading="lazy"
+                    className="w-full h-full object-contain p-2"
+                  />
+                </div>
               </Reveal>
             </div>
           </div>
@@ -211,6 +220,20 @@ export default function StoryPage() {
           </div>
         </div>
       </section>
+
+      {/* Floating WhatsApp Concierge Button */}
+      <a
+        href="https://api.whatsapp.com/send/?phone=94766502171&text&type=phone_number&app_absent=0"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with Ayurway Concierge on WhatsApp"
+        className="fixed bottom-8 right-8 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition-transform duration-500 hover:scale-110 focus:outline-none group"
+      >
+        <WhatsAppIcon />
+        <span className="absolute right-full mr-3 whitespace-nowrap bg-forest-deep text-ivory text-[0.6rem] uppercase tracking-[0.25em] px-4 py-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 shadow-md pointer-events-none">
+          Chat with Concierge
+        </span>
+      </a>
 
       <SiteFooter />
     </div>

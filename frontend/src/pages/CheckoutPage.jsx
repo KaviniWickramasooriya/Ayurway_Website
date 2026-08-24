@@ -7,6 +7,12 @@ import { Reveal } from "@/components/Reveal";
 import { useCart } from "@/contexts/CartContext";
 import { formatLKR, imageFor } from "@/data/products";
 
+const WhatsAppIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+  </svg>
+);
+
 export default function CheckoutPage() {
   const { lines, subtotal, shipping, total, clear } = useCart();
   const navigate = useNavigate();
@@ -20,7 +26,7 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col relative">
       <SiteHeader />
       
       <main className="flex-1 w-full pt-[120px] md:pt-[150px] pb-24 md:pb-32">
@@ -33,7 +39,6 @@ export default function CheckoutPage() {
                 <Lock size={12} /> Secure Checkout
               </p>
             </div>
-            {/* Reduced font size */}
             <h1 className="font-display text-4xl leading-[1.1] text-forest-deep md:text-5xl lg:text-6xl">
               {placed ? "Thank you." : "Complete your ritual."}
             </h1>
@@ -69,7 +74,7 @@ export default function CheckoutPage() {
                 </p>
                 <button 
                   onClick={() => navigate({ to: "/products" })} 
-                  className="mt-10 inline-flex items-center justify-center border border-forest-deep px-9 py-4 text-[0.6rem] uppercase tracking-[0.35em] text-forest-deep transition-all duration-700 hover:bg-forest-deep hover:text-ivory"
+                  className="mt-10 inline-flex items-center justify-center border border-forest-deep px-9 py-4 text-[0.6rem] uppercase tracking-[0.35em] text-forest-deep transition-all duration-700 hover:bg-forest-deep hover:text-ivory cursor-pointer"
                 >
                   Browse the Collection
                 </button>
@@ -132,7 +137,7 @@ export default function CheckoutPage() {
                     <div className="pt-2">
                       <button 
                         type="submit" 
-                        className="group w-full flex items-center justify-center gap-4 bg-forest-deep py-5 text-[0.6rem] uppercase tracking-[0.35em] text-ivory hover:bg-gold transition-colors duration-500 shadow-xl hover:shadow-none"
+                        className="group w-full flex items-center justify-center gap-4 bg-forest-deep py-5 text-[0.6rem] uppercase tracking-[0.35em] text-ivory hover:bg-gold transition-colors duration-500 shadow-xl hover:shadow-none cursor-pointer"
                       >
                         Confirm Order <ArrowRight size={14} className="transition-transform duration-500 group-hover:translate-x-2" />
                       </button>
@@ -187,6 +192,20 @@ export default function CheckoutPage() {
         </div>
       </main>
       
+      {/* Floating WhatsApp Concierge Button */}
+      <a
+        href="https://api.whatsapp.com/send/?phone=94766502171&text&type=phone_number&app_absent=0"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with Ayurway Concierge on WhatsApp"
+        className="fixed bottom-8 right-8 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition-transform duration-500 hover:scale-110 focus:outline-none group"
+      >
+        <WhatsAppIcon />
+        <span className="absolute right-full mr-3 whitespace-nowrap bg-forest-deep text-ivory text-[0.6rem] uppercase tracking-[0.25em] px-4 py-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 shadow-md pointer-events-none">
+          Chat with Concierge
+        </span>
+      </a>
+
       <SiteFooter />
     </div>
   );
@@ -210,5 +229,5 @@ function FloatingInput({ label, id, type = "text", full }) {
         {label}
       </label>
     </div>
-  );
+  );  
 }

@@ -3,13 +3,18 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { Reveal } from "@/components/Reveal";
 import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
 
+const WhatsAppIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+  </svg>
+);
+
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col relative">
       <SiteHeader />
 
       <main className="flex-1 w-full">
-        {/* Editorial Hero Section */}
         <section className="relative pt-[130px] pb-24 md:pt-[180px] md:pb-36 bg-forest-deep overflow-hidden">
           <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[600px] h-[600px] bg-gold/15 rounded-full blur-3xl pointer-events-none" />
 
@@ -19,7 +24,6 @@ export default function ContactPage() {
                 <div className="h-px w-8 bg-gold" />
                 <p className="text-[0.65rem] uppercase tracking-[0.4em] text-gold-soft">The Concierge</p>
               </div>
-              {/* Reduced font size */}
               <h1 className="font-display text-4xl leading-[1.1] text-ivory md:text-5xl lg:text-6xl max-w-4xl">
                 Let nature protect your <span className="italic text-gold-gradient font-light">health & beauty.</span>
               </h1>
@@ -30,12 +34,10 @@ export default function ContactPage() {
           </div>
         </section>
 
-        {/* Overlapping Content Section */}
         <section className="relative z-20 -mt-12 md:-mt-20 pb-28">
           <div className="mx-auto max-w-screen-2xl px-6 md:px-12">
             <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
 
-              {/* Left: Contact Information Card */}
               <div className="lg:col-span-5 bg-sand p-8 md:p-12 border border-border luxe-card">
                 <Reveal delay={100}>
                   <h3 className="font-display text-3xl md:text-4xl text-forest-deep mb-10">Reach out to us</h3>
@@ -89,7 +91,6 @@ export default function ContactPage() {
                 </Reveal>
               </div>
 
-              {/* Right: Refined Contact Form */}
               <div className="lg:col-span-7 bg-ivory p-8 md:p-14 lg:px-16 lg:py-20 border border-border luxe-card">
                 <Reveal delay={200}>
                   <h2 className="font-display text-3xl md:text-4xl text-forest-deep mb-4">Send a message</h2>
@@ -149,7 +150,7 @@ export default function ContactPage() {
                     <div className="pt-6 flex justify-end">
                       <button
                         type="submit"
-                        className="group inline-flex items-center justify-center gap-4 bg-forest-deep px-10 py-4 text-[0.6rem] uppercase tracking-[0.35em] text-ivory hover:bg-gold transition-colors duration-700"
+                        className="group inline-flex items-center justify-center gap-4 bg-forest-deep px-10 py-4 text-[0.6rem] uppercase tracking-[0.35em] text-ivory hover:bg-gold transition-colors duration-700 cursor-pointer"
                       >
                         Send Inquiry
                         <ArrowRight size={14} className="transition-transform duration-700 group-hover:translate-x-2" />
@@ -163,7 +164,6 @@ export default function ContactPage() {
           </div>
         </section>
 
-        {/* Full-Width Luxury Styled Map */}
         <section className="w-full h-[400px] md:h-[500px] bg-sand relative overflow-hidden group">
           <div className="absolute inset-0 bg-forest-deep/10 pointer-events-none z-10 transition-opacity duration-1000 group-hover:opacity-0" />
           
@@ -181,6 +181,20 @@ export default function ContactPage() {
           </Reveal>
         </section>
       </main>
+
+      {/* Floating WhatsApp Concierge Button */}
+      <a
+        href="https://api.whatsapp.com/send/?phone=94766502171&text&type=phone_number&app_absent=0"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with Ayurway Concierge on WhatsApp"
+        className="fixed bottom-8 right-8 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition-transform duration-500 hover:scale-110 focus:outline-none group"
+      >
+        <WhatsAppIcon />
+        <span className="absolute right-full mr-3 whitespace-nowrap bg-forest-deep text-ivory text-[0.6rem] uppercase tracking-[0.25em] px-4 py-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 shadow-md pointer-events-none">
+          Chat with Concierge
+        </span>
+      </a>
 
       <SiteFooter />
     </div>

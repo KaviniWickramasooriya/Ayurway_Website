@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Check, Plus, ShoppingBag } from "lucide-react";
+import { Check, Plus, ShoppingBag, Star } from "lucide-react";
 import { formatLKR, imageFor } from "@/data/products";
 import { useCart } from "@/contexts/CartContext";
 
@@ -8,7 +8,6 @@ export function ProductCard({ product }) {
   const isJustAdded = lastAdded === product.slug;
   const quantityInCart = qtyOf(product.slug);
 
-  // This handles adding to cart and immediately sliding out the drawer
   const handleAddToCart = (e) => {
     e.preventDefault(); 
     e.stopPropagation(); 
@@ -63,18 +62,27 @@ export function ProductCard({ product }) {
         </button>
       </div>
 
-      <div className="mt-6 flex flex-col flex-1 px-2">
-        <p className="eyebrow text-center">{product.category}</p>
+      <div className="mt-5 flex flex-col flex-1 px-1">
+        <div className="flex items-center justify-between">
+          <p className="eyebrow">{product.category}</p>
+          {product.stars && (
+            <div className="flex items-center gap-1 text-gold">
+              <Star size={12} fill="currentColor" strokeWidth={0} />
+              <span className="text-[0.65rem] font-medium tracking-wider text-forest-deep/80">{product.stars.toFixed(1)}</span>
+            </div>
+          )}
+        </div>
+
         <Link to={`/product/${product.slug}`}>
-          <h3 className="mt-3 font-display text-2xl tracking-wide text-center text-forest-deep line-clamp-1 group-hover:text-gold transition-colors duration-500">
+          {/* Increased font size to text-lg and md:text-xl */}
+          <h3 className="mt-2.5 font-display text-lg md:text-xl tracking-wide text-center text-forest-deep group-hover:text-gold transition-colors duration-500 leading-snug">
             {product.name}
           </h3>
         </Link>
         
-        {/* Price and Permanent Add to Cart Icon */}
-        <div className="mt-5 flex items-end justify-between pt-4 border-t border-border/50">
+        <div className="mt-auto pt-4 flex items-end justify-between border-t border-border/50">
           <div className="flex flex-col">
-            <span className="text-base font-display tracking-widest text-forest-deep mb-1">
+            <span className="text-sm md:text-base font-display tracking-widest text-forest-deep mb-0.5">
               {formatLKR(product.price)}
             </span>
             <span className="text-[0.6rem] uppercase tracking-[0.2em] text-clay">
@@ -82,14 +90,13 @@ export function ProductCard({ product }) {
             </span>
           </div>
           
-          {/* Always-visible Add to Cart Button */}
           <button
             onClick={handleAddToCart}
-            className="flex items-center justify-center w-10 h-10 rounded-full border border-border text-forest-deep hover:bg-forest-deep hover:text-ivory hover:border-forest-deep transition-all duration-500 shadow-sm"
+            className="flex items-center justify-center w-9 h-9 rounded-full border border-border text-forest-deep hover:bg-forest-deep hover:text-ivory hover:border-forest-deep transition-all duration-500 shadow-sm"
             aria-label="Add to cart"
             title="Add to Cart"
           >
-            {isJustAdded ? <Check size={14} strokeWidth={1.5} /> : <ShoppingBag size={14} strokeWidth={1.2} />}
+            {isJustAdded ? <Check size={13} strokeWidth={1.5} /> : <ShoppingBag size={13} strokeWidth={1.2} />}
           </button>
         </div>
       </div>

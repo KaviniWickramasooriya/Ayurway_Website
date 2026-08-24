@@ -37,24 +37,25 @@ export function SiteFooter() {
             <li><Link to="/" className="hover:text-gold transition-colors duration-500">Home</Link></li>
             <li><Link to="/products" className="hover:text-gold transition-colors duration-500">Shop</Link></li>
             <li><Link to="/story" className="hover:text-gold transition-colors duration-500">About Us</Link></li>
-            <li><a href="#enquire" className="hover:text-gold transition-colors duration-500">Contact Us</a></li>
+            <li><Link to="/contact" className="hover:text-gold transition-colors duration-500">Contact Us</Link></li>
             <li><Link to="/" className="hover:text-gold transition-colors duration-500">Blog</Link></li>
           </ul>
         </div>
 
-        {/* Product Categories */}
+        {/* Product Categories (Direct URL routing with search query params) */}
         <div className="lg:col-span-2">
           <p className="text-[0.65rem] uppercase tracking-[0.4em] text-gold">Categories</p>
           <ul className="mt-8 space-y-5 text-sm font-light tracking-wide text-ivory/60">
-            <li><Link to="/products" className="hover:text-gold transition-colors duration-500">Body Care</Link></li>
-            <li><Link to="/products" className="hover:text-gold transition-colors duration-500">Hair Care</Link></li>
-            <li><Link to="/products" className="hover:text-gold transition-colors duration-500">Face Care</Link></li>
-            <li><Link to="/products" className="hover:text-gold transition-colors duration-500">Child Care</Link></li>
-            <li><Link to="/products" className="hover:text-gold transition-colors duration-500">Herbal Ingredients</Link></li>
+            <li><Link to="/products" search={{ category: "Body Care" }} className="hover:text-gold transition-colors duration-500">Body Care</Link></li>
+            <li><Link to="/products" search={{ category: "Hair Care" }} className="hover:text-gold transition-colors duration-500">Hair Care</Link></li>
+            <li><Link to="/products" search={{ category: "Skincare" }} className="hover:text-gold transition-colors duration-500">Skincare</Link></li>
+            <li><Link to="/products" search={{ category: "Supplements" }} className="hover:text-gold transition-colors duration-500">Supplements</Link></li>
+            <li><Link to="/products" search={{ category: "Natural Foods" }} className="hover:text-gold transition-colors duration-500">Natural Foods</Link></li>
+            <li><Link to="/products" search={{ category: "Nuts & Seeds" }} className="hover:text-gold transition-colors duration-500">Nuts & Seeds</Link></li>
           </ul>
         </div>
 
-        {/* Contact Us (Forced to the right corner) */}
+        {/* Contact Us */}
         <div className="lg:col-span-3 lg:col-start-10">
           <p className="text-[0.65rem] uppercase tracking-[0.4em] text-gold">Get In Touch</p>
           <ul className="mt-8 space-y-6 text-sm font-light tracking-wide text-ivory/60">

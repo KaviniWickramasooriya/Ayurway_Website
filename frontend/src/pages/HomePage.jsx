@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, Leaf, FlaskConical, Sparkles, ShieldCheck } from "lucide-react";
+import { ArrowRight, Leaf, FlaskConical, Sparkles, ShieldCheck, Play, ChevronLeft, ChevronRight } from "lucide-react";
+import { useRef } from "react";
 
 // Import your local assets
 import heroImg from "../assets/hero-ritual.jpg";
@@ -12,8 +13,16 @@ import { Reveal } from "@/components/Reveal";
 import { ProductCard } from "@/components/ProductCard";
 import { products, imageFor } from "@/data/products";
 
+const WhatsAppIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+  </svg>
+);
+
 export default function HomePage() {
   const signatures = products.filter((p) => p.bestseller).slice(0, 6);
+  const scrollContainerRef = useRef(null);
+
   const marquee = [
     "Saffron", "Bhringraj", "Manjistha", "Wild Honey", "Neem", "Sandalwood", "Liquorice", "Moringa"
   ];
@@ -25,11 +34,57 @@ export default function HomePage() {
     { icon: ShieldCheck, title: "Clinical Efficacy", body: "Developed by practicing Ayurvedic specialists." }
   ];
 
+  const youtubeVideos = [
+    {
+      id: "SmbHwfgNAtM",
+      title: "Relief for Joint, Muscle & Nerve Pain",
+      category: "Therapeutic Care",
+      desc: "Expert guidance on utilizing Jeewa Prana herbal oils for deep muscular relief and restorative recovery."
+    },
+    {
+      id: "pM_reU2HiHY",
+      title: "The Natural Path to Luminous Skin",
+      category: "Skin Radiance",
+      desc: "Discover authentic rituals and time-tested natural treatments for an unhurried, radiant glow."
+    },
+    {
+      id: "-oT49jaOK0A",
+      title: "Ayurvedic Insights for Balanced Living",
+      category: "Holistic Health",
+      desc: "Clinical perspectives on maintaining natural wellness and vitality straight from the atelier."
+    },
+    {
+      id: "WEO1LvtnBRg",
+      title: "Easy Home Remedies to Control Blood Sugar",
+      category: "Natural Wellness",
+      desc: "Traditional approaches and herbal support for dietary balance and metabolic well-being."
+    },
+    {
+      id: "sPSblUOWSBM",
+      title: "Rice Water Treatment for Hair Growth & Thickness",
+      category: "Hair Care",
+      desc: "An ancient secret for restoring hair volume, root strength, and natural luster using fermented rice extracts."
+    },
+    {
+      id: "UY_hAD0Nbdo",
+      title: "Green Tea Hair Treatment for Healthy Roots",
+      category: "Hair Rituals",
+      desc: "Nourishing your scalp with antioxidant-rich botanical infusions to combat hair fall and breakage."
+    }
+  ];
+
+  const scrollGallery = (direction) => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = direction === 'left' ? -450 : 450;
+      scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
       <SiteHeader />
 
-      {/* Hero Section with Image Restored */}
+      {/* Hero Section */}
       <section className="relative h-svh min-h-[640px] w-full overflow-hidden bg-sand">
         <img
           src={heroImg}
@@ -132,6 +187,73 @@ export default function HomePage() {
               <p className="mt-3 text-sm leading-relaxed text-ivory/65">{p.body}</p>
             </Reveal>
           ))}
+        </div>
+      </section>
+
+      {/* YouTube Cinematic Horizontal Scroll Showcase */}
+      <section className="bg-sand py-28 md:py-36 overflow-hidden">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <div className="flex flex-wrap items-end justify-between gap-6 mb-16">
+              <div>
+                <div className="inline-flex items-center gap-2 mb-3">
+                  <Play size={12} className="text-gold fill-gold" />
+                  <p className="eyebrow">Cinematic Journals</p>
+                </div>
+                <h2 className="font-display text-4xl text-forest-deep md:text-5xl">
+                  The Ayurway Heritage in Motion
+                </h2>
+              </div>
+              {/* Scroll Navigation Buttons */}
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => scrollGallery('left')}
+                  aria-label="Scroll left"
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-ivory text-forest-deep transition-colors hover:bg-gold hover:border-gold shadow-sm cursor-pointer"
+                >
+                  <ChevronLeft size={20} strokeWidth={1.5} />
+                </button>
+                <button
+                  onClick={() => scrollGallery('right')}
+                  aria-label="Scroll right"
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-ivory text-forest-deep transition-colors hover:bg-gold hover:border-gold shadow-sm cursor-pointer"
+                >
+                  <ChevronRight size={20} strokeWidth={1.5} />
+                </button>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Horizontal Scrolling Video Track */}
+          <div 
+            ref={scrollContainerRef}
+            className="flex gap-8 overflow-x-auto pb-6 scrollbar-hide snap-x snap-mandatory scroll-smooth"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {youtubeVideos.map((vid, idx) => (
+              <div 
+                key={vid.id}
+                className="w-[340px] md:w-[420px] shrink-0 snap-start bg-ivory p-5 border border-border luxe-card"
+              >
+                <div className="relative aspect-video w-full overflow-hidden bg-forest-deep/10 shadow-sm">
+                  <iframe 
+                    className="absolute inset-0 w-full h-full border-0"
+                    src={`https://www.youtube.com/embed/${vid.id}`} 
+                    title={vid.title} 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowFullScreen
+                  />
+                </div>
+                <div className="mt-6">
+                  <p className="text-[0.6rem] uppercase tracking-[0.3em] text-gold mb-1">{vid.category}</p>
+                  <h3 className="font-display text-xl text-forest-deep line-clamp-1">{vid.title}</h3>
+                  <p className="mt-2 text-xs md:text-sm text-muted-foreground font-light leading-relaxed line-clamp-2">
+                    {vid.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -241,18 +363,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Category strip */}
+      {/* Category strip with direct category filtering */}
       <section className="border-t border-border">
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-px bg-border md:grid-cols-4">
           {[
-            ["Skincare", "ayurway-saffron-jojoba-night-serum"],
-            ["Hair", "ayurway-hair-oil"],
-            ["Honey", "aged-honey-400g"],
-            ["Wellness", "hello-beauty-capsule"],
-          ].map(([label, slug]) => (
+            ["Skincare", "Skincare", "apsara-day-cream"],
+            ["Hair Care", "Hair Care", "ayurway-hair-serum"],
+            ["Natural Foods", "Natural Foods", "aged-honey-200g"],
+            ["Supplements", "Supplements", "hello-beauty-capsule"],
+          ].map(([label, categoryName, slug]) => (
             <Link
               key={label}
               to="/products"
+              search={{ category: categoryName }}
               className="group relative overflow-hidden bg-background"
             >
               <img
@@ -268,6 +391,20 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+      {/* Floating WhatsApp Concierge Button */}
+      <a
+        href="https://api.whatsapp.com/send/?phone=94766502171&text&type=phone_number&app_absent=0"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with Ayurway Concierge on WhatsApp"
+        className="fixed bottom-8 right-8 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition-transform duration-500 hover:scale-110 focus:outline-none group"
+      >
+        <WhatsAppIcon />
+        <span className="absolute right-full mr-3 whitespace-nowrap bg-forest-deep text-ivory text-[0.6rem] uppercase tracking-[0.25em] px-4 py-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 shadow-md pointer-events-none">
+          Chat with Concierge
+        </span>
+      </a>
 
       <SiteFooter />
     </div>

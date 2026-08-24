@@ -20,7 +20,9 @@ export function SiteHeader() {
   const navigate = useNavigate();
   
   const isProductsPage = location.pathname === "/products";
-  const isLightPage = location.pathname === "/checkout";
+  
+  // Exclude contact from isLightPage so it starts with ivory text on the dark hero background
+  const isLightPage = location.pathname === "/checkout" || location.pathname.startsWith("/product/");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -144,14 +146,14 @@ export function SiteHeader() {
             )}
           </button>
 
-          {/* Mobile Menu Toggle (Given z-[120] so it always sits above the overlay) */}
+          {/* Mobile Menu Toggle */}
           <button onClick={() => setOpen((v) => !v)} aria-label="Toggle menu" className={`md:hidden transition-colors ${open ? "text-ivory" : tone} z-[120] relative`}>
             {open ? <X size={24} strokeWidth={1.2} /> : <Menu size={24} strokeWidth={1.2} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Luxury Overlay (z-[100]) */}
+      {/* Mobile Luxury Overlay */}
       <div className={`fixed inset-0 h-screen w-screen bg-forest-deep z-[100] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] md:hidden flex flex-col items-center justify-center ${open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none translate-y-[-100vh]'}`}>
         <div className="flex flex-col items-center justify-center space-y-8 px-6 text-center">
           <Link to="/" onClick={() => setOpen(false)} className={`font-display text-2xl tracking-widest transition-colors ${location.pathname === "/" ? "text-gold italic" : "text-ivory hover:text-gold"}`}>Home</Link>

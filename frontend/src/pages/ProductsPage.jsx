@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useSearch } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -6,10 +6,22 @@ import { ProductCard } from "@/components/ProductCard";
 import { Reveal } from "@/components/Reveal";
 import { categories, products } from "@/data/products";
 
+const WhatsAppIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+  </svg>
+);
+
 export default function ProductsPage() {
-  const [activeCategory, setActiveCategory] = useState("All");
-  
   const searchParams = useSearch({ strict: false });
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  useEffect(() => {
+    if (searchParams.category && categories.includes(searchParams.category)) {
+      setActiveCategory(searchParams.category);
+    }
+  }, [searchParams.category]);
+  
   const searchQuery = (searchParams.q || "").toLowerCase();
 
   const displayedProducts = useMemo(() => {
@@ -31,7 +43,7 @@ export default function ProductsPage() {
   }, [activeCategory, searchQuery]);
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col relative">
       <SiteHeader />
       
       <section className="relative bg-forest-deep px-6 pb-20 pt-40 text-ivory overflow-hidden">
@@ -43,7 +55,6 @@ export default function ProductsPage() {
               <div className="h-px w-8 bg-gold" />
               <p className="text-[0.65rem] uppercase tracking-[0.5em] text-gold-soft">{products.length} Master Formulations</p>
             </div>
-            {/* Reduced font size for luxury balance */}
             <h1 className="mt-2 max-w-4xl font-display text-4xl leading-[1.1] md:text-6xl lg:text-7xl">
               The complete <br/><span className="italic text-gold-gradient font-light">apothecary</span>
             </h1>
@@ -60,7 +71,7 @@ export default function ProductsPage() {
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`whitespace-nowrap pb-1 text-[0.65rem] uppercase tracking-[0.3em] transition-all duration-500 relative ${
+              className={`whitespace-nowrap pb-1 text-[0.65rem] uppercase tracking-[0.3em] transition-all duration-500 relative cursor-pointer ${
                 activeCategory === category
                   ? "text-forest-deep font-medium"
                   : "text-clay hover:text-forest-deep"
@@ -97,6 +108,20 @@ export default function ProductsPage() {
           </div>
         )}
       </main>
+
+      {/* Floating WhatsApp Concierge Button */}
+      <a
+        href="https://api.whatsapp.com/send/?phone=94766502171&text&type=phone_number&app_absent=0"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with Ayurway Concierge on WhatsApp"
+        className="fixed bottom-8 right-8 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition-transform duration-500 hover:scale-110 focus:outline-none group"
+      >
+        <WhatsAppIcon />
+        <span className="absolute right-full mr-3 whitespace-nowrap bg-forest-deep text-ivory text-[0.6rem] uppercase tracking-[0.25em] px-4 py-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 shadow-md pointer-events-none">
+          Chat with Concierge
+        </span>
+      </a>
 
       <SiteFooter />
     </div>
