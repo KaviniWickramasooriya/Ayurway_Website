@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState, useRef } from "react";
 import { Menu, ShoppingBag, X, Search } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
+import logo from "@/assets/ayurway-logo.png";
 
 const leftLinks = [
   { to: "/products", label: "Collection" },
@@ -59,7 +60,7 @@ export function SiteHeader() {
   const tone = scrolled || isLightPage ? "text-forest-deep" : "text-ivory";
   const headerBg = scrolled 
     ? "bg-ivory/95 backdrop-blur-lg border-b border-border py-4 shadow-sm" 
-    : "bg-transparent border-b border-transparent py-8";
+    : "bg-transparent border-b border-transparent py-6";
 
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${headerBg}`}>
@@ -79,21 +80,15 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        {/* Center Logo with Luxury Crest / Emblem integration */}
-        <Link to="/" className="flex flex-1 flex-col items-center justify-center leading-none text-center z-50 relative group">
-          {/* Subtle luxury leaf crest symbol */}
-          <div className={`mb-1.5 transition-all duration-700 ${scrolled || isLightPage ? "text-gold" : "text-gold-soft"} group-hover:scale-110`}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.4 19 2c2 2 2.6 3.5 3.7 9.2a7 7 0 0 1-13.9 8.8z"/>
-              <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.5 12 17 12 20"/>
-            </svg>
-          </div>
-          <span className={`font-display text-2xl md:text-3xl tracking-[0.3em] transition-colors duration-700 group-hover:text-gold ${tone}`}>
-            AYURWAY
-          </span>
-          <span className={`mt-1.5 text-[0.5rem] uppercase tracking-[0.5em] transition-colors duration-700 ${scrolled || isLightPage ? "text-forest/60" : "text-ivory/70"}`}>
-            Ceylon Ayurveda
-          </span>
+        {/* Center Logo with Image (Larger on Mobile and Desktop) */}
+        <Link to="/" className="flex flex-1 flex-col items-center justify-center leading-none text-center z-50 relative group" aria-label="Ayurway home">
+          <img
+            src={logo}
+            alt="Ayurway by Ishara Sandamini"
+            className={`w-[210px] transition-all duration-700 md:w-[250px] ${
+              scrolled || isLightPage ? "" : "brightness-0 invert"
+            }`}
+          />
         </Link>
 
         {/* Right Actions */}
