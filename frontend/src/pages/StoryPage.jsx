@@ -105,7 +105,7 @@ export default function StoryPage() {
         </div>
       </section>
 
-      {/* Founders Section: Mr. Anura (Full Image Displayed) */}
+      {/* Founders Section: Mr. Anura (Perfectly Fitted Card Image) */}
       <section className="bg-ivory py-20 md:py-28">
         <div className="mx-auto max-w-screen-2xl px-6 md:px-12">
           <div className="grid gap-16 lg:grid-cols-12 lg:items-center flex-col-reverse lg:flex-row">
@@ -139,18 +139,16 @@ export default function StoryPage() {
               </Reveal>
             </div>
             
-            {/* Image container updated to object-contain with a neutral background framing to show the full picture */}
+            {/* Image container styled with object-cover and object-top to seamlessly fill the portrait card */}
             <div className="lg:col-span-5 lg:col-start-8 order-1 lg:order-2 relative">
               <Reveal>
                 <div className="absolute -inset-4 bg-forest-deep/5 translate-y-6 translate-x-6 -z-10" />
-                <div className="w-full h-[550px] bg-sand flex items-center justify-center overflow-hidden shadow-xl border border-border">
-                  <img
-                    src={anuraImg}
-                    alt="Mr. Anura Pathirana"
-                    loading="lazy"
-                    className="w-full h-full object-contain p-2"
-                  />
-                </div>
+                <img
+                  src={anuraImg}
+                  alt="Mr. Anura Pathirana"
+                  loading="lazy"
+                  className="w-full h-[550px] object-cover object-top shadow-xl"
+                />
               </Reveal>
             </div>
           </div>

@@ -79,12 +79,19 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        {/* Center Logo */}
+        {/* Center Logo with Luxury Crest / Emblem integration */}
         <Link to="/" className="flex flex-1 flex-col items-center justify-center leading-none text-center z-50 relative group">
-          <span className={`font-display text-3xl md:text-4xl tracking-[0.3em] transition-colors duration-700 group-hover:text-gold ${tone}`}>
+          {/* Subtle luxury leaf crest symbol */}
+          <div className={`mb-1.5 transition-all duration-700 ${scrolled || isLightPage ? "text-gold" : "text-gold-soft"} group-hover:scale-110`}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.4 19 2c2 2 2.6 3.5 3.7 9.2a7 7 0 0 1-13.9 8.8z"/>
+              <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.5 12 17 12 20"/>
+            </svg>
+          </div>
+          <span className={`font-display text-2xl md:text-3xl tracking-[0.3em] transition-colors duration-700 group-hover:text-gold ${tone}`}>
             AYURWAY
           </span>
-          <span className={`mt-2 text-[0.55rem] uppercase tracking-[0.5em] transition-colors duration-700 ${scrolled || isLightPage ? "text-forest/60" : "text-ivory/70"}`}>
+          <span className={`mt-1.5 text-[0.5rem] uppercase tracking-[0.5em] transition-colors duration-700 ${scrolled || isLightPage ? "text-forest/60" : "text-ivory/70"}`}>
             Ceylon Ayurveda
           </span>
         </Link>
@@ -92,7 +99,7 @@ export function SiteHeader() {
         {/* Right Actions */}
         <div className="flex flex-1 items-center justify-end gap-6 md:gap-8">
           
-          {/* Dynamic Search (Only on /products) */}
+          {/* Dynamic Search (Hidden in mobile view completely using hidden md:flex) */}
           <div className="hidden md:flex items-center relative">
             {isProductsPage && (
               <input 

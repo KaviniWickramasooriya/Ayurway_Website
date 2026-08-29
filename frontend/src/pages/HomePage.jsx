@@ -75,65 +75,77 @@ export default function HomePage() {
 
   const scrollGallery = (direction) => {
     if (scrollContainerRef.current) {
-      const scrollAmount = direction === 'left' ? -450 : 450;
+      const scrollAmount = direction === 'left' ? -400 : 400;
       scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
 
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="min-h-screen bg-background relative overflow-x-hidden">
       <SiteHeader />
 
       {/* Hero Section */}
-      <section className="relative h-svh min-h-[640px] w-full overflow-hidden bg-sand">
-        <img
-          src={heroImg}
-          alt="A woman applying Ayurway saffron serum"
-          className="absolute inset-0 h-full w-full object-cover object-[62%_center]"
-        />
-        <div className="hero-veil absolute inset-0" />
-        <div className="relative mx-auto flex h-full max-w-7xl items-end px-6 pb-24 md:items-center md:pb-0">
-          <div className="max-w-2xl">
-            <p className="text-[0.6rem] uppercase tracking-[0.42em] text-gold-soft">
-              Est. Ceylon · Ayurveda since antiquity
-            </p>
-            <h1 className="mt-8 font-display text-5xl leading-[1.03] text-ivory sm:text-6xl lg:text-7xl">
-              The oldest science of
-              <span className="block italic text-gold-gradient">radiant living</span>
-            </h1>
-            <p className="mt-8 max-w-lg text-base leading-relaxed text-ivory/80">
-              Saffron serums, herbal hair oils and wild honey — hand-blended in small
-              batches from the island's rarest botanicals.
-            </p>
-            <div className="mt-12 flex flex-wrap items-center gap-6">
-              <Link
-                to="/products"
-                className="group inline-flex items-center gap-4 bg-ivory px-9 py-4 text-[0.65rem] uppercase tracking-[0.32em] text-forest-deep transition-colors hover:bg-gold"
-              >
-                Discover the collection
-                <ArrowRight
-                  size={14}
-                  className="transition-transform duration-500 group-hover:translate-x-1"
-                />
-              </Link>
-              <Link
-                to="/story"
-                className="text-[0.65rem] uppercase tracking-[0.32em] text-ivory/80 underline-offset-8 hover:text-gold hover:underline"
-              >
-                Our philosophy
-              </Link>
-            </div>
+      <section className="relative h-svh min-h-[680px] w-full overflow-hidden bg-forest-deep pt-28 md:pt-36">
+        <div className="absolute inset-y-0 right-0 w-full lg:w-[55%] overflow-hidden">
+          <img
+            src={heroImg}
+            alt="A woman applying Ayurway saffron serum"
+            className="h-full w-full object-cover object-center lg:object-[62%_center] transition-transform duration-[2000ms] hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-forest-deep via-forest-deep/20 to-transparent lg:block hidden" />
+          <div className="hero-veil absolute inset-0 lg:hidden" />
+        </div>
+
+        <div className="relative mx-auto flex h-full max-w-7xl items-end px-6 pb-28 md:items-center md:pb-12 z-10">
+          <div className="max-w-2xl bg-forest-deep/80 backdrop-blur-md lg:bg-transparent p-6 lg:p-0 rounded-sm">
+            <Reveal>
+              <p className="text-[0.6rem] uppercase tracking-[0.42em] text-gold-soft transition-all duration-700 hover:tracking-[0.5em]">
+                Est. Ceylon · Ayurveda since antiquity
+              </p>
+            </Reveal>
+            <Reveal delay={150}>
+              <h1 className="mt-8 font-display text-5xl leading-[1.15] text-ivory sm:text-6xl lg:text-7xl pb-3">
+                The oldest science of
+                <span className="block italic text-gold-gradient pt-1">radiant living</span>
+              </h1>
+            </Reveal>
+            <Reveal delay={300}>
+              <p className="mt-8 max-w-lg text-base leading-relaxed text-ivory/80">
+                Saffron serums, herbal hair oils and wild honey — hand-blended in small
+                batches from the island's rarest botanicals.
+              </p>
+            </Reveal>
+            <Reveal delay={450}>
+              <div className="mt-12 flex flex-wrap items-center gap-6">
+                <Link
+                  to="/products"
+                  className="group inline-flex items-center gap-4 bg-ivory px-9 py-4 text-[0.65rem] uppercase tracking-[0.32em] text-forest-deep transition-all duration-500 hover:bg-gold hover:shadow-lg"
+                >
+                  Discover the collection
+                  <ArrowRight
+                    size={14}
+                    className="transition-transform duration-500 group-hover:translate-x-2"
+                  />
+                </Link>
+                <Link
+                  to="/story"
+                  className="text-[0.65rem] uppercase tracking-[0.32em] text-ivory/80 underline-offset-8 hover:text-gold hover:underline transition-colors duration-300"
+                >
+                  Our philosophy
+                </Link>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* Marquee */}
-      <div className="overflow-hidden border-y border-border bg-sand py-5">
+      <div className="overflow-hidden border-y border-border bg-sand py-5 shadow-inner">
         <div className="marquee-track">
           {[...marquee, ...marquee].map((word, i) => (
             <span
               key={i}
-              className="whitespace-nowrap px-10 font-display text-lg tracking-[0.3em] uppercase text-forest/45"
+              className="whitespace-nowrap px-10 font-display text-lg tracking-[0.3em] uppercase text-forest/45 transition-colors duration-300 hover:text-gold cursor-default"
             >
               {word} <span className="text-gold">·</span>
             </span>
@@ -161,30 +173,34 @@ export default function HomePage() {
             </p>
             <Link
               to="/story"
-              className="mt-10 inline-flex items-center gap-3 text-[0.65rem] uppercase tracking-[0.32em] text-forest hover:text-gold"
+              className="mt-10 inline-flex items-center gap-3 text-[0.65rem] uppercase tracking-[0.32em] text-forest hover:text-gold transition-all duration-300 group"
             >
-              Read the house story <ArrowRight size={14} />
+              Read the house story <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1.5" />
             </Link>
           </Reveal>
-          <Reveal delay={120}>
-            <img
-              src={ingredientsImg}
-              alt="Saffron, turmeric, neem and raw honey arranged on warm stone"
-              loading="lazy"
-              className="w-full object-cover shadow-sm rounded-sm"
-            />
+          <Reveal delay={150}>
+            <div className="overflow-hidden rounded-sm group shadow-md">
+              <img
+                src={ingredientsImg}
+                alt="Saffron, turmeric, neem and raw honey arranged on warm stone"
+                loading="lazy"
+                className="w-full object-cover transition-transform duration-1000 group-hover:scale-105"
+              />
+            </div>
           </Reveal>
         </div>
       </section>
 
       {/* Pillars */}
-      <section className="bg-forest-deep py-24 text-ivory">
+      <section className="bg-forest-deep py-24 text-ivory relative overflow-hidden">
         <div className="mx-auto grid max-w-7xl gap-14 px-6 sm:grid-cols-2 lg:grid-cols-4">
           {pillars.map((p, i) => (
-            <Reveal key={p.title} delay={i * 90}>
-              <p.icon size={22} className="text-gold" strokeWidth={1.2} />
-              <h3 className="mt-6 font-display text-2xl">{p.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-ivory/65">{p.body}</p>
+            <Reveal key={p.title} delay={i * 120}>
+              <div className="group p-6 transition-transform duration-500 hover:-translate-y-2">
+                <p.icon size={26} className="text-gold transition-transform duration-500 group-hover:scale-110" strokeWidth={1.2} />
+                <h3 className="mt-6 font-display text-2xl group-hover:text-gold-soft transition-colors duration-300">{p.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-ivory/65">{p.body}</p>
+              </div>
             </Reveal>
           ))}
         </div>
@@ -204,19 +220,18 @@ export default function HomePage() {
                   The Ayurway Heritage in Motion
                 </h2>
               </div>
-              {/* Scroll Navigation Buttons */}
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => scrollGallery('left')}
                   aria-label="Scroll left"
-                  className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-ivory text-forest-deep transition-colors hover:bg-gold hover:border-gold shadow-sm cursor-pointer"
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-ivory text-forest-deep transition-all duration-300 hover:bg-gold hover:border-gold hover:text-forest-deep shadow-sm cursor-pointer active:scale-95"
                 >
                   <ChevronLeft size={20} strokeWidth={1.5} />
                 </button>
                 <button
                   onClick={() => scrollGallery('right')}
                   aria-label="Scroll right"
-                  className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-ivory text-forest-deep transition-colors hover:bg-gold hover:border-gold shadow-sm cursor-pointer"
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-ivory text-forest-deep transition-all duration-300 hover:bg-gold hover:border-gold hover:text-forest-deep shadow-sm cursor-pointer active:scale-95"
                 >
                   <ChevronRight size={20} strokeWidth={1.5} />
                 </button>
@@ -224,20 +239,19 @@ export default function HomePage() {
             </div>
           </Reveal>
 
-          {/* Horizontal Scrolling Video Track */}
           <div 
             ref={scrollContainerRef}
-            className="flex gap-8 overflow-x-auto pb-6 scrollbar-hide snap-x snap-mandatory scroll-smooth"
+            className="flex gap-8 overflow-x-auto pb-8 pt-2 px-2 scrollbar-hide snap-x snap-mandatory scroll-smooth"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {youtubeVideos.map((vid, idx) => (
               <div 
                 key={vid.id}
-                className="w-[340px] md:w-[420px] shrink-0 snap-start bg-ivory p-5 border border-border luxe-card"
+                className="w-[320px] sm:w-[350px] md:w-[380px] shrink-0 snap-start bg-ivory p-6 border border-border luxe-card transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:border-gold group"
               >
-                <div className="relative aspect-video w-full overflow-hidden bg-forest-deep/10 shadow-sm">
+                <div className="relative aspect-video w-full overflow-hidden bg-forest-deep/10 shadow-sm rounded-sm">
                   <iframe 
-                    className="absolute inset-0 w-full h-full border-0"
+                    className="absolute inset-0 w-full h-full border-0 transition-transform duration-700 group-hover:scale-105"
                     src={`https://www.youtube.com/embed/${vid.id}`} 
                     title={vid.title} 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -245,9 +259,9 @@ export default function HomePage() {
                   />
                 </div>
                 <div className="mt-6">
-                  <p className="text-[0.6rem] uppercase tracking-[0.3em] text-gold mb-1">{vid.category}</p>
-                  <h3 className="font-display text-xl text-forest-deep line-clamp-1">{vid.title}</h3>
-                  <p className="mt-2 text-xs md:text-sm text-muted-foreground font-light leading-relaxed line-clamp-2">
+                  <p className="text-[0.6rem] uppercase tracking-[0.3em] text-gold mb-1.5">{vid.category}</p>
+                  <h3 className="font-display text-xl text-forest-deep line-clamp-1 group-hover:text-gold transition-colors duration-300">{vid.title}</h3>
+                  <p className="mt-2.5 text-xs md:text-sm text-muted-foreground font-light leading-relaxed line-clamp-2">
                     {vid.desc}
                   </p>
                 </div>
@@ -269,9 +283,10 @@ export default function HomePage() {
             </div>
             <Link
               to="/products"
-              className="inline-flex items-center gap-3 border border-forest px-8 py-3.5 text-[0.65rem] uppercase tracking-[0.3em] text-forest transition-colors hover:bg-forest hover:text-ivory"
+              className="group inline-flex items-center gap-3 border border-forest px-8 py-3.5 text-[0.65rem] uppercase tracking-[0.3em] text-forest transition-all duration-300 hover:bg-forest hover:text-ivory hover:shadow-md"
             >
-              View all 48 products
+              <span>View all 48 products</span>
+              <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>
         </Reveal>
@@ -285,15 +300,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Ritual split */}
-      <section className="bg-sand">
+      {/* Ritual split with detailed Abhyanga four unhurried steps */}
+      <section className="bg-sand overflow-hidden">
         <div className="mx-auto grid max-w-7xl gap-0 md:grid-cols-2">
-          <img
-            src={ritualImg}
-            alt="Warm herbal oil in a brass bowl beside folded linen"
-            loading="lazy"
-            className="h-full w-full object-cover"
-          />
+          <div className="overflow-hidden group">
+            <img
+              src={ritualImg}
+              alt="Warm herbal oil in a brass bowl beside folded linen"
+              loading="lazy"
+              className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
+            />
+          </div>
           <div className="flex flex-col justify-center px-8 py-24 md:px-16">
             <Reveal>
               <p className="eyebrow">The evening ritual</p>
@@ -307,7 +324,7 @@ export default function HomePage() {
                   ["Rest", "Let the oil settle for twelve minutes in stillness."],
                   ["Cleanse", "Rinse with warm water; never strip with soap."],
                 ].map(([title, body], i) => (
-                  <li key={title} className="flex gap-6">
+                  <li key={title} className="flex gap-6 group transition-transform duration-300 hover:translate-x-1">
                     <span className="font-display text-2xl text-gold">
                       0{i + 1}
                     </span>
@@ -348,8 +365,8 @@ export default function HomePage() {
               "Ayesha F., Galle",
             ],
           ].map(([quote, name], i) => (
-            <Reveal key={name} delay={i * 110}>
-              <figure className="luxe-card h-full border border-border p-10">
+            <Reveal key={name} delay={i * 120}>
+              <figure className="luxe-card h-full border border-border p-10 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:border-gold">
                 <span className="font-display text-5xl leading-none text-gold">“</span>
                 <blockquote className="mt-4 font-display text-xl leading-relaxed text-forest-deep">
                   {quote}
@@ -367,7 +384,7 @@ export default function HomePage() {
       <section className="border-t border-border">
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-px bg-border md:grid-cols-4">
           {[
-            ["Skincare", "Skincare", "apsara-day-cream"],
+            ["Face Care", "Face Care", "apsara-day-cream"],
             ["Hair Care", "Hair Care", "ayurway-hair-serum"],
             ["Natural Foods", "Natural Foods", "aged-honey-200g"],
             ["Supplements", "Supplements", "hello-beauty-capsule"],
@@ -382,9 +399,9 @@ export default function HomePage() {
                 src={imageFor(slug)}
                 alt={label}
                 loading="lazy"
-                className="aspect-square w-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                className="aspect-square w-full object-cover transition-transform duration-1000 group-hover:scale-110"
               />
-              <span className="absolute inset-0 flex items-end bg-forest-deep/35 p-6 font-display text-2xl text-ivory transition-colors group-hover:bg-forest-deep/55">
+              <span className="absolute inset-0 flex items-end bg-forest-deep/35 p-6 font-display text-2xl text-ivory transition-all duration-500 group-hover:bg-forest-deep/65 group-hover:translate-y-[-4px]">
                 {label}
               </span>
             </Link>
@@ -398,7 +415,7 @@ export default function HomePage() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with Ayurway Concierge on WhatsApp"
-        className="fixed bottom-8 right-8 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition-transform duration-500 hover:scale-110 focus:outline-none group"
+        className="fixed bottom-8 right-8 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition-all duration-500 hover:scale-110 hover:shadow-green-500/50 focus:outline-none group animate-bounce"
       >
         <WhatsAppIcon />
         <span className="absolute right-full mr-3 whitespace-nowrap bg-forest-deep text-ivory text-[0.6rem] uppercase tracking-[0.25em] px-4 py-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 shadow-md pointer-events-none">

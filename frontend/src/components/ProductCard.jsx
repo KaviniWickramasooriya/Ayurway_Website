@@ -1,18 +1,42 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { Check, Plus, ShoppingBag, Star } from "lucide-react";
 import { formatLKR, imageFor } from "@/data/products";
 import { useCart } from "@/contexts/CartContext";
 
 export function ProductCard({ product }) {
+  const navigate = useNavigate();
   const { add, lastAdded, qtyOf, open: openCart } = useCart();
-  const isJustAdded = lastAdded === product.slug;
-  const quantityInCart = qtyOf(product.slug);
+  
+  const hasVariants = product.variants && product.variants.length > 0;
+  
+  // Use the smallest/base variant size to display on the card
+  const baseSize = hasVariants ? product.variants[0].size : product.size;
+  const basePrice = hasVariants ? product.variants[0].price : product.price;
+  
+  // Check if ANY variant or base of this product is in the cart to show total quantity
+  // Calculate total quantity of this specific product (all variants combined)
+  let totalQuantityInCart = 0;
+  if (hasVariants) {
+    product.variants.forEach(v => {
+      totalQuantityInCart += qtyOf(product.slug, v.size);
+    });
+  } else {
+    totalQuantityInCart = qtyOf(product.slug);
+  }
+
+  const isJustAdded = lastAdded === true;
 
   const handleAddToCart = (e) => {
     e.preventDefault(); 
     e.stopPropagation(); 
-    add(product.slug, 1);
-    openCart();
+    
+    // If it has variants, better to take them to the detail page so they can choose
+    if (hasVariants) {
+      navigate({ to: `/product/${product.slug}` });
+    } else {
+      add(product.slug, 1);
+      openCart();
+    }
   };
 
   return (
@@ -34,9 +58,9 @@ export function ProductCard({ product }) {
           </span>
         )}
 
-        {quantityInCart > 0 && (
+        {totalQuantityInCart > 0 && (
           <span className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-gold text-[0.65rem] font-medium tracking-widest text-forest-deep shadow-xl z-10 animate-in zoom-in pointer-events-none">
-            {quantityInCart}
+            {totalQuantityInCart}
           </span>
         )}
 
@@ -46,19 +70,19 @@ export function ProductCard({ product }) {
           </p>
         </div>
 
-        {/* Hover Quick Add Button */}
+        {/* Hover Quick Add / Select Option Button */}
         <button
           type="button"
           onClick={handleAddToCart}
-          aria-label={`Add ${product.name} to cart`}
+          aria-label={hasVariants ? `Select options for ${product.name}` : `Add ${product.name} to cart`}
           className={`absolute bottom-0 left-0 w-full flex items-center justify-center gap-3 py-5 text-[0.6rem] uppercase tracking-[0.3em] transition-all duration-500 ease-out z-20 md:translate-y-full md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 ${
-            isJustAdded
+            isJustAdded && !hasVariants
               ? "bg-forest-deep text-ivory"
               : "bg-ivory text-forest-deep hover:bg-gold hover:text-forest-deep"
           }`}
         >
-          {isJustAdded ? <Check size={14} strokeWidth={1.5} /> : <Plus size={14} strokeWidth={1} />}
-          <span>{isJustAdded ? "Added to Cart" : "Quick Add"}</span>
+          {isJustAdded && !hasVariants ? <Check size={14} strokeWidth={1.5} /> : <Plus size={14} strokeWidth={1} />}
+          <span>{hasVariants ? "Select Option" : (isJustAdded ? "Added to Cart" : "Quick Add")}</span>
         </button>
       </div>
 
@@ -74,7 +98,6 @@ export function ProductCard({ product }) {
         </div>
 
         <Link to={`/product/${product.slug}`}>
-          {/* Increased font size to text-lg and md:text-xl */}
           <h3 className="mt-2.5 font-display text-lg md:text-xl tracking-wide text-center text-forest-deep group-hover:text-gold transition-colors duration-500 leading-snug">
             {product.name}
           </h3>
@@ -83,20 +106,20 @@ export function ProductCard({ product }) {
         <div className="mt-auto pt-4 flex items-end justify-between border-t border-border/50">
           <div className="flex flex-col">
             <span className="text-sm md:text-base font-display tracking-widest text-forest-deep mb-0.5">
-              {formatLKR(product.price)}
+              {hasVariants ? `From ${formatLKR(basePrice)}` : formatLKR(basePrice)}
             </span>
             <span className="text-[0.6rem] uppercase tracking-[0.2em] text-clay">
-              {product.size}
+              {hasVariants ? `Starts at ${baseSize}` : baseSize}
             </span>
           </div>
           
           <button
             onClick={handleAddToCart}
             className="flex items-center justify-center w-9 h-9 rounded-full border border-border text-forest-deep hover:bg-forest-deep hover:text-ivory hover:border-forest-deep transition-all duration-500 shadow-sm"
-            aria-label="Add to cart"
-            title="Add to Cart"
+            aria-label={hasVariants ? "Select Option" : "Add to cart"}
+            title={hasVariants ? "Select Option" : "Add to Cart"}
           >
-            {isJustAdded ? <Check size={13} strokeWidth={1.5} /> : <ShoppingBag size={13} strokeWidth={1.2} />}
+            {isJustAdded && !hasVariants ? <Check size={13} strokeWidth={1.5} /> : (hasVariants ? <Plus size={13} strokeWidth={1.2} /> : <ShoppingBag size={13} strokeWidth={1.2} />)}
           </button>
         </div>
       </div>

@@ -111,7 +111,7 @@ export default function ProductsPage() {
 
       {/* Floating WhatsApp Concierge Button */}
       <a
-        href="https://api.whatsapp.com/send/?phone=94766502171&text&type=phone_number&app_absent=0"
+        href="https://api.whatsapp.com/send/?phone=94766502171&text=Hello%20Ayurway%20Concierge,%20I%20would%20like%20to%20place%20an%20order.&type=phone_number&app_absent=0"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with Ayurway Concierge on WhatsApp"
