@@ -14,26 +14,30 @@ const YoutubeIcon = () => (
 export function SiteFooter() {
   return (
     <footer id="enquire" className="bg-forest-deep text-ivory border-t border-ivory/10">
-      <div className="mx-auto grid max-w-screen-2xl gap-12 px-6 md:px-12 py-24 lg:py-32 lg:grid-cols-12">
+      {/* 
+        Adjusted grid to be 2 columns on mobile, allowing lists to sit side-by-side. 
+        Reduced padding-y (py-16) on mobile to fix the excessive height issue.
+      */}
+      <div className="mx-auto grid max-w-screen-2xl grid-cols-2 gap-x-6 gap-y-16 px-6 py-16 md:px-12 md:py-24 lg:grid-cols-12 lg:gap-12 lg:py-32">
         
         {/* Brand Info */}
-        <div className="lg:col-span-4">
-          <p className="font-display text-4xl tracking-[0.3em] text-ivory">AYURWAY</p>
-          <p className="mt-4 text-[0.6rem] uppercase tracking-[0.5em] text-gold">Ayurway Lanka (Pvt) Ltd</p>
-          <p className="mt-10 max-w-md text-base font-light leading-loose text-ivory/60">
+        <div className="col-span-2 lg:col-span-4">
+          <p className="font-display text-3xl md:text-4xl tracking-[0.3em] text-ivory">AYURWAY</p>
+          <p className="mt-3 md:mt-4 text-[0.55rem] md:text-[0.6rem] uppercase tracking-[0.5em] text-gold">Ayurway Lanka (Pvt) Ltd</p>
+          <p className="mt-6 md:mt-8 max-w-md text-sm md:text-base font-light leading-relaxed md:leading-loose text-ivory/60">
             Let Nature Protect Your Health and Beauty. Meticulously crafted using the finest herbs and ingredients, ensuring that every item we offer is safe, effective, and true to the ancient traditions of Ayurveda.
           </p>
-          <div className="mt-12 flex gap-6">
+          <div className="mt-8 md:mt-12 flex gap-6">
             <a href="http://www.instagram.com/ayurwaybyisharasandamini" aria-label="Instagram" className="text-ivory/60 hover:text-gold transition-colors duration-500"><InstagramIcon /></a>
             <a href="http://www.facebook.com/ayurwaylanka" aria-label="Facebook" className="text-ivory/60 hover:text-gold transition-colors duration-500"><FacebookIcon /></a>
             <a href="http://www.youtube.com/c/ayurway" aria-label="YouTube" className="text-ivory/60 hover:text-gold transition-colors duration-500"><YoutubeIcon /></a>
           </div>
         </div>
 
-        {/* Pages */}
-        <div className="lg:col-span-2 lg:col-start-6">
-          <p className="text-[0.65rem] uppercase tracking-[0.4em] text-gold">Pages</p>
-          <ul className="mt-8 space-y-5 text-sm font-light tracking-wide text-ivory/60">
+        {/* Pages (Takes 1 column on mobile, sits next to Categories) */}
+        <div className="col-span-1 lg:col-span-2 lg:col-start-6">
+          <p className="text-[0.6rem] md:text-[0.65rem] uppercase tracking-[0.4em] text-gold">Pages</p>
+          <ul className="mt-6 space-y-4 md:space-y-5 text-xs md:text-sm font-light tracking-wide text-ivory/60">
             <li><Link to="/" className="hover:text-gold transition-colors duration-500">Home</Link></li>
             <li><Link to="/products" className="hover:text-gold transition-colors duration-500">Shop</Link></li>
             <li><Link to="/story" className="hover:text-gold transition-colors duration-500">About Us</Link></li>
@@ -42,31 +46,31 @@ export function SiteFooter() {
           </ul>
         </div>
 
-        {/* Product Categories (Direct URL routing with search query params) */}
-        <div className="lg:col-span-2">
-          <p className="text-[0.65rem] uppercase tracking-[0.4em] text-gold">Categories</p>
-          <ul className="mt-8 space-y-5 text-sm font-light tracking-wide text-ivory/60">
+        {/* Product Categories (Takes 1 column on mobile, sits next to Pages) */}
+        <div className="col-span-1 lg:col-span-2">
+          <p className="text-[0.6rem] md:text-[0.65rem] uppercase tracking-[0.4em] text-gold">Categories</p>
+          <ul className="mt-6 space-y-4 md:space-y-5 text-xs md:text-sm font-light tracking-wide text-ivory/60">
             <li><Link to="/products" search={{ category: "Body Care" }} className="hover:text-gold transition-colors duration-500">Body Care</Link></li>
             <li><Link to="/products" search={{ category: "Hair Care" }} className="hover:text-gold transition-colors duration-500">Hair Care</Link></li>
-            <li><Link to="/products" search={{ category: "Skincare" }} className="hover:text-gold transition-colors duration-500">Skincare</Link></li>
+            <li><Link to="/products" search={{ category: "Face Care" }} className="hover:text-gold transition-colors duration-500">Face Care</Link></li>
             <li><Link to="/products" search={{ category: "Supplements" }} className="hover:text-gold transition-colors duration-500">Supplements</Link></li>
             <li><Link to="/products" search={{ category: "Natural Foods" }} className="hover:text-gold transition-colors duration-500">Natural Foods</Link></li>
-            <li><Link to="/products" search={{ category: "Nuts & Seeds" }} className="hover:text-gold transition-colors duration-500">Nuts & Seeds</Link></li>
+            <li><Link to="/products" search={{ category: "Nuts, Seeds & Berries" }} className="hover:text-gold transition-colors duration-500">Nuts & Seeds</Link></li>
           </ul>
         </div>
 
-        {/* Contact Us */}
-        <div className="lg:col-span-3 lg:col-start-10">
-          <p className="text-[0.65rem] uppercase tracking-[0.4em] text-gold">Get In Touch</p>
-          <ul className="mt-8 space-y-6 text-sm font-light tracking-wide text-ivory/60">
-            <li className="leading-loose">
-              <span className="text-gold block mb-1 text-xs tracking-widest uppercase">Address</span>
+        {/* Contact Us (Spans full width on mobile) */}
+        <div className="col-span-2 lg:col-span-3 lg:col-start-10">
+          <p className="text-[0.6rem] md:text-[0.65rem] uppercase tracking-[0.4em] text-gold">Get In Touch</p>
+          <ul className="mt-6 space-y-5 md:space-y-6 text-xs md:text-sm font-light tracking-wide text-ivory/60">
+            <li className="leading-relaxed md:leading-loose">
+              <span className="text-gold block mb-1.5 text-[0.6rem] tracking-widest uppercase">Address</span>
               No.58, Yahampath Mawatha,<br />
               Piliyandala Road, Maharagama,<br />
               Sri Lanka
             </li>
             <li>
-              <span className="text-gold block mb-1 text-xs tracking-widest uppercase">Hotline</span>
+              <span className="text-gold block mb-1.5 text-[0.6rem] tracking-widest uppercase">Hotline</span>
               <a href="tel:0766502171" className="hover:text-gold transition-colors duration-500 cursor-pointer">
                 076 650 2171
               </a>
@@ -77,7 +81,7 @@ export function SiteFooter() {
 
       {/* Copyright */}
       <div className="border-t border-ivory/10">
-        <div className="mx-auto flex max-w-screen-2xl flex-col gap-4 px-6 md:px-12 py-8 text-[0.6rem] uppercase tracking-[0.4em] text-ivory/40 md:flex-row md:items-center md:justify-between">
+        <div className="mx-auto flex max-w-screen-2xl flex-col gap-3 px-6 md:px-12 py-6 md:py-8 text-[0.55rem] md:text-[0.6rem] uppercase tracking-[0.4em] text-ivory/40 md:flex-row md:items-center md:justify-between text-center md:text-left">
           <span>© {new Date().getFullYear()} Ayurway Lanka (Pvt) Ltd. All rights reserved.</span>
           <span>Crafted in Sri Lanka</span>
         </div>

@@ -133,7 +133,7 @@ export default function HomePage() {
                 </Link>
                 <Link
                   to="/story"
-                  className="inline-flex items-center py-4 text-[0.65rem] uppercase tracking-[0.32em] text-ivory/80 underline-offset-8 hover:text-gold hover:underline"
+                  className="inline-flex items-center py-4 text-[0.65rem] uppercase tracking-[0.32em] text-ivory/80 underline-offset-8 hover:text-gold hover:underline transition-colors duration-300"
                 >
                   Our philosophy
                 </Link>
@@ -251,7 +251,8 @@ export default function HomePage() {
             {youtubeVideos.map((vid, idx) => (
               <div 
                 key={vid.id}
-                className="w-[300px] sm:w-[350px] md:w-[380px] shrink-0 snap-start bg-ivory p-6 border border-border luxe-card transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:border-gold group"
+                /* Changed w-[300px] to w-full to make the card fill the mobile screen */
+                className="w-full sm:w-[350px] md:w-[380px] shrink-0 snap-start bg-ivory p-6 border border-border luxe-card transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:border-gold group"
               >
                 <div className="relative aspect-video w-full overflow-hidden bg-forest-deep/10 shadow-sm rounded-sm">
                   <iframe 

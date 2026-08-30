@@ -46,32 +46,37 @@ export default function ProductsPage() {
     <div className="min-h-screen bg-background flex flex-col relative">
       <SiteHeader />
       
-      <section className="relative bg-forest-deep px-6 pb-20 pt-40 text-ivory overflow-hidden">
+      {/* Increased pt-48 to pt-56 to ensure the text isn't covered by the large un-scrolled header */}
+      <section className="relative bg-forest-deep px-6 pb-20 pt-48 md:pt-56 text-ivory overflow-hidden">
         <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gold/5 rounded-full blur-3xl pointer-events-none" />
         
-        <div className="relative z-10 mx-auto max-w-screen-2xl md:px-6">
+        <div className="relative z-10 mx-auto max-w-screen-2xl md:px-6 text-center md:text-left">
           <Reveal>
-            <div className="flex items-center gap-4 mb-4">
-              <div className="h-px w-8 bg-gold" />
+            <div className="flex items-center justify-center md:justify-start gap-4 mb-4">
+              <div className="h-px w-8 bg-gold hidden md:block" />
               <p className="text-[0.65rem] uppercase tracking-[0.5em] text-gold-soft">{products.length} Master Formulations</p>
             </div>
-            <h1 className="mt-2 max-w-4xl font-display text-4xl leading-[1.1] md:text-6xl lg:text-7xl">
+            <h1 className="mt-2 md:mt-4 max-w-4xl mx-auto md:mx-0 font-display text-4xl leading-[1.1] md:text-6xl lg:text-7xl">
               The complete <br/><span className="italic text-gold-gradient font-light">apothecary</span>
             </h1>
-            <p className="mt-8 max-w-xl text-base font-light leading-relaxed text-ivory/70">
+            <p className="mt-6 md:mt-8 max-w-xl mx-auto md:mx-0 text-sm md:text-base font-light leading-relaxed text-ivory/70">
               Blended by hand in Sri Lanka. Island-wide delivery is complimentary on curations above LKR 10,000.
             </p>
           </Reveal>
         </div>
       </section>
 
-      <div className="sticky top-[89px] md:top-[105px] z-40 border-b border-border bg-ivory/95 backdrop-blur-lg shadow-sm">
-        <div className="mx-auto flex max-w-screen-2xl gap-10 overflow-x-auto px-6 md:px-12 py-5 scrollbar-hide">
+      {/* 
+        Increased top offset significantly so it sits securely below the scrolled header.
+        Mobile: top-[125px], Desktop: md:top-[140px]
+      */}
+      <div className="sticky top-[125px] md:top-[140px] z-40 border-b border-border bg-ivory/95 backdrop-blur-xl shadow-sm transition-all duration-300">
+        <div className="mx-auto flex max-w-screen-2xl gap-8 md:gap-10 overflow-x-auto px-6 md:px-12 py-4 md:py-5 scrollbar-hide items-center relative">
           {["All", ...categories].map((category) => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`whitespace-nowrap pb-1 text-[0.65rem] uppercase tracking-[0.3em] transition-all duration-500 relative cursor-pointer ${
+              className={`whitespace-nowrap pb-1.5 text-[0.65rem] uppercase tracking-[0.3em] transition-all duration-500 relative cursor-pointer ${
                 activeCategory === category
                   ? "text-forest-deep font-medium"
                   : "text-clay hover:text-forest-deep"
@@ -81,6 +86,8 @@ export default function ProductsPage() {
               <span className={`absolute bottom-0 left-0 w-full h-[2px] bg-gold transition-transform duration-500 origin-left ${activeCategory === category ? "scale-x-100" : "scale-x-0"}`} />
             </button>
           ))}
+          {/* Subtle fade effect on the right side for mobile scrolling hint */}
+          <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-ivory to-transparent md:hidden pointer-events-none" />
         </div>
       </div>
 
@@ -115,10 +122,10 @@ export default function ProductsPage() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with Ayurway Concierge on WhatsApp"
-        className="fixed bottom-8 right-8 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition-transform duration-500 hover:scale-110 focus:outline-none group"
+        className="fixed bottom-6 md:bottom-8 right-6 md:right-8 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition-transform duration-500 hover:scale-110 focus:outline-none group"
       >
         <WhatsAppIcon />
-        <span className="absolute right-full mr-3 whitespace-nowrap bg-forest-deep text-ivory text-[0.6rem] uppercase tracking-[0.25em] px-4 py-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 shadow-md pointer-events-none">
+        <span className="absolute right-full mr-3 whitespace-nowrap bg-forest-deep text-ivory text-[0.6rem] uppercase tracking-[0.25em] px-4 py-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 shadow-md pointer-events-none hidden md:block">
           Chat with Concierge
         </span>
       </a>
