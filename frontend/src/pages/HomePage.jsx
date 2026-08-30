@@ -73,9 +73,12 @@ export default function HomePage() {
     }
   ];
 
+  // Dynamically calculate the exact width of one card + the gap to ensure it perfectly snaps 1 card at a time on any device
   const scrollGallery = (direction) => {
-    if (scrollContainerRef.current) {
-      const scrollAmount = direction === 'left' ? -400 : 400;
+    if (scrollContainerRef.current && scrollContainerRef.current.firstElementChild) {
+      const cardWidth = scrollContainerRef.current.firstElementChild.offsetWidth;
+      const gap = window.innerWidth >= 768 ? 32 : 24; // Matches our gap-6 (24px) mobile and gap-8 (32px) desktop classes
+      const scrollAmount = direction === 'left' ? -(cardWidth + gap) : (cardWidth + gap);
       scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
@@ -245,7 +248,7 @@ export default function HomePage() {
 
           <div 
             ref={scrollContainerRef}
-            className="flex gap-6 md:gap-8 overflow-x-auto pb-8 pt-2 scrollbar-hide snap-x snap-mandatory scroll-smooth w-full"
+            className="flex gap-6 md:gap-8 overflow-x-auto pb-8 pt-2 px-2 scrollbar-hide snap-x snap-mandatory scroll-smooth w-full"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {youtubeVideos.map((vid, idx) => (
