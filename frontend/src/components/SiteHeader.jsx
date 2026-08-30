@@ -160,7 +160,7 @@ export function SiteHeader() {
         <div className="flex flex-col items-center justify-center space-y-8 px-6 text-center">
           <Link to="/" onClick={() => setOpen(false)} className={`font-display text-2xl tracking-widest transition-colors ${location.pathname === "/" ? "text-gold italic" : "text-ivory hover:text-gold"}`}>Home</Link>
           <Link to="/products" onClick={() => setOpen(false)} className={`font-display text-2xl tracking-widest transition-colors ${location.pathname === "/products" ? "text-gold italic" : "text-ivory hover:text-gold"}`}>Collection</Link>
-          <Link to="/story" onClick={() => setOpen(false)} className={`font-display text-2xl tracking-widest transition-colors ${location.pathname === "/story" ? "text-gold italic" : "text-ivory hover:text-gold"}`}>About us</Link>
+          <Link to="/story" onClick={() => setOpen(false)} className={`font-display text-2xl tracking-widest transition-colors ${location.pathname === "/story" ? "text-gold italic" : "text-ivory hover:text-gold"}`}>About Us</Link>
           <Link to="/contact" onClick={() => setOpen(false)} className={`font-display text-2xl tracking-widest transition-colors ${location.pathname === "/contact" ? "text-gold italic" : "text-ivory hover:text-gold"}`}>Enquire</Link>
           <div className="w-12 h-px bg-gold/50 my-4" />
           <a href="mailto:info@ayurway.lk" onClick={() => setOpen(false)} className="text-[0.65rem] uppercase tracking-[0.35em] text-gold-soft">info@ayurway.lk</a>

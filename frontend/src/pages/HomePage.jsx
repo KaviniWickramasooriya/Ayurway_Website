@@ -245,14 +245,14 @@ export default function HomePage() {
 
           <div 
             ref={scrollContainerRef}
-            className="flex gap-8 overflow-x-auto pb-8 pt-2 px-2 scrollbar-hide snap-x snap-mandatory scroll-smooth"
+            className="flex gap-6 md:gap-8 overflow-x-auto pb-8 pt-2 scrollbar-hide snap-x snap-mandatory scroll-smooth w-full"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {youtubeVideos.map((vid, idx) => (
               <div 
                 key={vid.id}
-                /* Changed w-[300px] to w-full to make the card fill the mobile screen */
-                className="w-full sm:w-[350px] md:w-[380px] shrink-0 snap-start bg-ivory p-6 border border-border luxe-card transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:border-gold group"
+                /* w-full shrink-0 forces it to exactly fill the mobile view width. snap-center perfectly centers it. */
+                className="w-full shrink-0 sm:w-[350px] md:w-[380px] snap-center bg-ivory p-6 border border-border luxe-card transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:border-gold group"
               >
                 <div className="relative aspect-video w-full overflow-hidden bg-forest-deep/10 shadow-sm rounded-sm">
                   <iframe 
