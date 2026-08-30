@@ -18,7 +18,8 @@ const WhatsAppIcon = () => (
 
 export default function StoryPage() {
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="min-h-screen bg-background relative overflow-x-hidden">
+      {/* Added overflow-x-hidden to perfectly lock the mobile viewport and prevent zooming out */}
       <SiteHeader />
 
       {/* Cinematic Hero Section */}
@@ -63,19 +64,20 @@ export default function StoryPage() {
           <div className="grid gap-16 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-5 relative">
               <Reveal>
-                <div className="absolute -inset-4 bg-gold-soft/40 translate-y-6 -translate-x-6 -z-10" />
+                {/* Adjusted mobile translation to keep it elegantly within bounds */}
+                <div className="absolute -inset-2 md:-inset-4 bg-gold-soft/40 translate-y-4 -translate-x-2 md:translate-y-6 md:-translate-x-6 -z-10" />
                 <img
                   src={drIsharaImg}
                   alt="Dr. Ishara Sandamini"
                   loading="lazy"
-                  className="w-full h-[550px] object-cover shadow-xl"
+                  className="w-full h-[450px] md:h-[550px] object-cover object-top shadow-xl rounded-sm"
                 />
               </Reveal>
             </div>
             <div className="lg:col-span-6 lg:col-start-7">
               <Reveal delay={150}>
                 <p className="eyebrow">Co-Founder & Director</p>
-                <h2 className="mt-3 font-display text-4xl text-forest-deep">Dr. Ishara Sandamini</h2>
+                <h2 className="mt-3 font-display text-3xl md:text-4xl text-forest-deep">Dr. Ishara Sandamini</h2>
                 
                 <div className="mt-8 space-y-6">
                   <div>
@@ -105,14 +107,14 @@ export default function StoryPage() {
         </div>
       </section>
 
-      {/* Founders Section: Mr. Anura (Perfectly Fitted Card Image) */}
+      {/* Founders Section: Mr. Anura */}
       <section className="bg-ivory py-20 md:py-28">
         <div className="mx-auto max-w-screen-2xl px-6 md:px-12">
           <div className="grid gap-16 lg:grid-cols-12 lg:items-center flex-col-reverse lg:flex-row">
             <div className="lg:col-span-6 order-2 lg:order-1">
               <Reveal delay={150}>
                 <p className="eyebrow">Co-Founder & Director</p>
-                <h2 className="mt-3 font-display text-4xl text-forest-deep">Mr. Anura Pathirana</h2>
+                <h2 className="mt-3 font-display text-3xl md:text-4xl text-forest-deep">Mr. Anura Pathirana</h2>
                 
                 <div className="mt-8 space-y-6">
                   <div>
@@ -139,15 +141,15 @@ export default function StoryPage() {
               </Reveal>
             </div>
             
-            {/* Image container styled with object-cover and object-top to seamlessly fill the portrait card */}
             <div className="lg:col-span-5 lg:col-start-8 order-1 lg:order-2 relative">
               <Reveal>
-                <div className="absolute -inset-4 bg-forest-deep/5 translate-y-6 translate-x-6 -z-10" />
+                {/* Adjusted mobile translation to keep it elegantly within bounds */}
+                <div className="absolute -inset-2 md:-inset-4 bg-forest-deep/5 translate-y-4 translate-x-2 md:translate-y-6 md:translate-x-6 -z-10" />
                 <img
                   src={anuraImg}
                   alt="Mr. Anura Pathirana"
                   loading="lazy"
-                  className="w-full h-[550px] object-cover object-top shadow-xl"
+                  className="w-full h-[450px] md:h-[550px] object-cover object-top shadow-xl rounded-sm"
                 />
               </Reveal>
             </div>
@@ -197,8 +199,8 @@ export default function StoryPage() {
               { icon: Leaf, title: "Authenticity", text: "Rooted in clinical Ayurvedic practice, our formulations honor the pure, unadulterated essence of native botanicals." }
             ].map((item, i) => (
               <Reveal key={item.title} delay={i * 100}>
-                <div className="bg-ivory p-10 text-center h-full border border-border luxe-card">
-                  <item.icon size={32} className="mx-auto text-gold mb-5" strokeWidth={1} />
+                <div className="bg-ivory p-10 text-center h-full border border-border luxe-card transition-transform duration-500 hover:-translate-y-2 hover:shadow-lg">
+                  <item.icon size={32} className="mx-auto text-gold mb-5" strokeWidth={1.2} />
                   <h3 className="font-display text-2xl text-forest-deep mb-3">{item.title}</h3>
                   <p className="text-xs font-light leading-relaxed text-forest-deep/70">{item.text}</p>
                 </div>
@@ -210,7 +212,7 @@ export default function StoryPage() {
              <Reveal>
               <Link
                 to="/products"
-                className="inline-flex items-center gap-4 bg-forest-deep px-9 py-4 text-[0.6rem] uppercase tracking-[0.35em] text-ivory transition-all duration-700 hover:bg-gold"
+                className="inline-flex items-center gap-4 bg-forest-deep px-9 py-4 text-[0.65rem] uppercase tracking-[0.35em] text-ivory transition-all duration-700 hover:bg-gold hover:text-forest-deep shadow-md"
               >
                 Explore Our Products <ArrowRight size={14} />
               </Link>
@@ -221,14 +223,14 @@ export default function StoryPage() {
 
       {/* Floating WhatsApp Concierge Button */}
       <a
-        href="https://api.whatsapp.com/send/?phone=94766502171&text&type=phone_number&app_absent=0"
+        href="https://api.whatsapp.com/send/?phone=94766502171&text=Hello%20Ayurway%20Concierge&type=phone_number&app_absent=0"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with Ayurway Concierge on WhatsApp"
-        className="fixed bottom-8 right-8 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition-transform duration-500 hover:scale-110 focus:outline-none group"
+        className="fixed bottom-6 md:bottom-8 right-6 md:right-8 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition-all duration-500 hover:scale-110 hover:shadow-green-500/50 focus:outline-none group animate-bounce"
       >
         <WhatsAppIcon />
-        <span className="absolute right-full mr-3 whitespace-nowrap bg-forest-deep text-ivory text-[0.6rem] uppercase tracking-[0.25em] px-4 py-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 shadow-md pointer-events-none">
+        <span className="absolute right-full mr-3 whitespace-nowrap bg-forest-deep text-ivory text-[0.6rem] uppercase tracking-[0.25em] px-4 py-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100 shadow-md pointer-events-none hidden md:block">
           Chat with Concierge
         </span>
       </a>
