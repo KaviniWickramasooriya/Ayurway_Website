@@ -1079,27 +1079,27 @@ export const products = [
   // --- NUTS, SEEDS & BERRIES ---
   {
     slug: "cranberry",
-    name: "Cranberry",
+    name: "Dried Cranberry",
     category: "Nuts, Seeds & Berries",
     price: 700,
     size: "100 g",
     stars: 4.8,
-    tagline: "Ayurway Cranberry is a nutrient-rich natural product known for its refreshing taste and health benefits.",
-    notes: ["Cranberry"],
+    tagline: "Ayurway Dried Cranberry is a nutrient-rich natural product known for its refreshing taste and health benefits.",
+    notes: ["Dried Cranberry"],
     variants: [
       { size: "100g", price: 700 },
       { size: "250g", price: 1400 },
       { size: "500g", price: 2500 },
       { size: "1Kg", price: 4900 }
     ],
-    about: "Ayurway Cranberry is a nutrient-rich natural product known for its refreshing taste and health benefits. It supports overall wellness and is especially beneficial for maintaining urinary tract health.",
+    about: "Ayurway Dried Cranberry is a nutrient-rich natural product known for its refreshing taste and health benefits. It supports overall wellness and is especially beneficial for maintaining urinary tract health.",
     benefits: [
       { title: "Supports Urinary Health", desc: "Helps maintain a healthy urinary system." },
       { title: "Rich in Antioxidants", desc: "Protects the body from free radical damage." },
       { title: "Boosts Immunity", desc: "Supports the body’s natural defence system." }
     ],
     ingredients: [
-      { name: "Cranberry", desc: "Natural fruit rich in vitamins and antioxidants." }
+      { name: "Dried Cranberry", desc: "Natural dried fruit rich in vitamins and antioxidants." }
     ],
     whyChoose: [
       { title: "Natural & Healthy", desc: "Made from high-quality natural ingredients." },
@@ -1113,27 +1113,27 @@ export const products = [
   },
   {
     slug: "blueberry",
-    name: "Blueberry",
+    name: "Dried Blueberry",
     category: "Nuts, Seeds & Berries",
     price: 900,
     size: "100 g",
     stars: 4.8,
-    tagline: "Ayurway Blueberry is a delicious and nutrient-packed fruit product rich in antioxidants.",
-    notes: ["Blueberry"],
+    tagline: "Ayurway Dried Blueberry is a delicious and nutrient-packed fruit product rich in antioxidants.",
+    notes: ["Dried Blueberry"],
     variants: [
       { size: "100g", price: 900 },
       { size: "250g", price: 1850 },
       { size: "500g", price: 3375 },
       { size: "1Kg", price: 6700 }
     ],
-    about: "Ayurway Blueberry is a delicious and nutrient-packed fruit product rich in antioxidants. It helps support brain function, skin health, and overall wellness.",
+    about: "Ayurway Dried Blueberry is a delicious and nutrient-packed fruit product rich in antioxidants. It helps support brain function, skin health, and overall wellness.",
     benefits: [
       { title: "Brain Support", desc: "Helps improve memory and cognitive function." },
       { title: "Rich in Antioxidants", desc: "Protects the body from oxidative stress." },
       { title: "Skin Health", desc: "Supports healthy, glowing skin." }
     ],
     ingredients: [
-      { name: "Blueberry", desc: "A superfruit packed with vitamins and antioxidants." }
+      { name: "Dried Blueberry", desc: "A dried superfruit packed with vitamins and antioxidants." }
     ],
     whyChoose: [
       { title: "Premium Quality", desc: "Carefully selected for taste and nutrition." },
@@ -1147,27 +1147,27 @@ export const products = [
   },
   {
     slug: "blueberry-cranberry-mix",
-    name: "Blueberry & Cranberry Mix",
+    name: "Dried Blueberry & Cranberry Mix",
     category: "Nuts, Seeds & Berries",
     price: 800,
     size: "100 g",
     stars: 4.9,
-    tagline: "Ayurway Blueberry & Cranberry Mix is a delicious combination of two superfruits packed with antioxidants and nutrients.",
-    notes: ["Blueberry", "Cranberry"],
+    tagline: "Ayurway Dried Blueberry & Cranberry Mix is a delicious combination of two superfruits packed with antioxidants and nutrients.",
+    notes: ["Dried Blueberry", "Dried Cranberry"],
     variants: [
       { size: "100g", price: 800 },
       { size: "250g", price: 2400 },
       { size: "500g", price: 3250 }
     ],
-    about: "Ayurway Blueberry & Cranberry Mix is a delicious combination of two superfruits packed with antioxidants and nutrients. It supports overall health while offering a tasty and refreshing snack option. Contains equal amounts of blueberries and cranberries.",
+    about: "Ayurway Dried Blueberry & Cranberry Mix is a delicious combination of two superfruits packed with antioxidants and nutrients. It supports overall health while offering a tasty and refreshing snack option. Contains equal amounts of dried blueberries and dried cranberries.",
     benefits: [
       { title: "Double Antioxidants", desc: "Combines the benefits of both blueberries and cranberries." },
       { title: "Boosts Immunity", desc: "Supports the body’s natural defence system." },
       { title: "Healthy Snack", desc: "A nutritious and tasty alternative to junk food." }
     ],
     ingredients: [
-      { name: "Blueberry", desc: "Rich in vitamins and antioxidants." },
-      { name: "Cranberry", desc: "Supports urinary and overall health." }
+      { name: "Dried Blueberry", desc: "Rich in vitamins and antioxidants." },
+      { name: "Dried Cranberry", desc: "Supports urinary and overall health." }
     ],
     whyChoose: [
       { title: "Two-in-One Benefit", desc: "Enjoy combined health benefits in one product." },

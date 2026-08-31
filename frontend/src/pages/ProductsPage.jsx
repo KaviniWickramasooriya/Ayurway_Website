@@ -46,8 +46,10 @@ export default function ProductsPage() {
     <div className="min-h-screen bg-background flex flex-col relative">
       <SiteHeader />
       
-      {/* Increased pt-48 to pt-56 to ensure the text isn't covered by the large un-scrolled header */}
-      <section className="relative bg-forest-deep px-6 pb-20 pt-48 md:pt-56 text-ivory overflow-hidden">
+      {/* 
+        Refined padding to beautifully balance the hero text with the new logo.
+      */}
+      <section className="relative bg-forest-deep px-6 pb-20 pt-[180px] md:pt-[220px] text-ivory overflow-hidden">
         <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gold/5 rounded-full blur-3xl pointer-events-none" />
         
         <div className="relative z-10 mx-auto max-w-screen-2xl md:px-6 text-center md:text-left">
@@ -67,10 +69,10 @@ export default function ProductsPage() {
       </section>
 
       {/* 
-        Increased top offset significantly so it sits securely below the scrolled header.
-        Mobile: top-[125px], Desktop: md:top-[140px]
+        Calculated precise "sweet spot" so it docks perfectly under the scrolled header 
+        without any visible gap and without slipping underneath it.
       */}
-      <div className="sticky top-[125px] md:top-[140px] z-40 border-b border-border bg-ivory/95 backdrop-blur-xl shadow-sm transition-all duration-300">
+      <div className="sticky top-[130px] md:top-[152px] z-40 border-b border-border bg-ivory/95 backdrop-blur-xl shadow-sm transition-all duration-300">
         <div className="mx-auto flex max-w-screen-2xl gap-8 md:gap-10 overflow-x-auto px-6 md:px-12 py-4 md:py-5 scrollbar-hide items-center relative">
           {["All", ...categories].map((category) => (
             <button
