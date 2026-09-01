@@ -59,10 +59,10 @@ export function SiteHeader() {
 
   const tone = scrolled || isLightPage ? "text-forest-deep" : "text-ivory";
   
-  // Reduced padding (py-2.5 and py-4) to make the navbar vertically slimmer and more elegant
+  // Further reduced padding (py-2 and py-3) for a slimmer, more refined navbar layout
   const headerBg = scrolled 
-    ? "bg-ivory/95 backdrop-blur-lg border-b border-border py-2.5 shadow-sm" 
-    : "bg-transparent border-b border-transparent py-4";
+    ? "bg-ivory/95 backdrop-blur-lg border-b border-border py-2 shadow-sm" 
+    : "bg-transparent border-b border-transparent py-3";
 
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${headerBg}`}>
@@ -82,12 +82,12 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        {/* Center Logo with Image */}
+        {/* Center Logo with Image (Reduced width sizing) */}
         <Link to="/" className="flex flex-1 flex-col items-center justify-center leading-none text-center z-50 relative group" aria-label="Ayurway home">
           <img
             src={logo}
             alt="Ayurway by Ishara Sandamini"
-            className={`w-[180px] transition-all duration-700 md:w-[220px] ${
+            className={`w-[140px] transition-all duration-700 md:w-[170px] ${
               scrolled || isLightPage ? "" : "brightness-0 invert"
             }`}
           />
@@ -125,7 +125,7 @@ export function SiteHeader() {
 
           <Link
             to="/contact"
-            className={`hidden md:inline-block border px-6 py-2.5 text-[0.6rem] uppercase tracking-[0.3em] transition-all duration-700 ${
+            className={`hidden md:inline-block border px-6 py-2 text-[0.6rem] uppercase tracking-[0.3em] transition-all duration-700 ${
               location.pathname === "/contact"
                 ? "bg-gold text-forest-deep border-gold font-medium"
                 : scrolled || isLightPage
