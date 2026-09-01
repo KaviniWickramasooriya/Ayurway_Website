@@ -14,8 +14,7 @@ const YoutubeIcon = () => (
 export function SiteFooter() {
   return (
     <footer id="enquire" className="bg-forest-deep text-ivory border-t border-ivory/10">
-      {/* 
-        Adjusted grid to be 2 columns on mobile, allowing lists to sit side-by-side. 
+      {/* Adjusted grid to be 2 columns on mobile, allowing lists to sit side-by-side. 
         Reduced padding-y (py-16) on mobile to fix the excessive height issue.
       */}
       <div className="mx-auto grid max-w-screen-2xl grid-cols-2 gap-x-6 gap-y-16 px-6 py-16 md:px-12 md:py-24 lg:grid-cols-12 lg:gap-12 lg:py-32">
@@ -81,9 +80,14 @@ export function SiteFooter() {
 
       {/* Copyright */}
       <div className="border-t border-ivory/10">
-        <div className="mx-auto flex max-w-screen-2xl flex-col gap-3 px-6 md:px-12 py-6 md:py-8 text-[0.55rem] md:text-[0.6rem] uppercase tracking-[0.4em] text-ivory/40 md:flex-row md:items-center md:justify-between text-center md:text-left">
+        <div className="mx-auto flex max-w-screen-2xl flex-col gap-4 px-6 md:px-12 py-6 md:py-8 text-[0.55rem] md:text-[0.6rem] uppercase tracking-[0.4em] text-ivory/40 md:flex-row md:items-center md:justify-between text-center md:text-left">
           <span>© {new Date().getFullYear()} Ayurway Lanka (Pvt) Ltd. All rights reserved.</span>
-          <span>Crafted in Sri Lanka</span>
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
+            {/* <span>Crafted in Sri Lanka</span> */}
+            <span>
+              Powered by <a href="https://adnavra.com/" target="_blank" rel="noopener noreferrer" className="text-ivory/60 hover:text-gold transition-colors duration-300">Adnavra</a>
+            </span>
+          </div>
         </div>
       </div>
     </footer>
