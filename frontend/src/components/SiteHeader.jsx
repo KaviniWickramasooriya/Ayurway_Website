@@ -21,8 +21,6 @@ export function SiteHeader() {
   const navigate = useNavigate();
   
   const isProductsPage = location.pathname === "/products";
-  
-  // Exclude contact from isLightPage so it starts with ivory text on the dark hero background
   const isLightPage = location.pathname === "/checkout" || location.pathname.startsWith("/product/");
 
   useEffect(() => {
@@ -32,7 +30,6 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock body scroll when mobile menu opens
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
@@ -44,7 +41,6 @@ export function SiteHeader() {
     };
   }, [open]);
 
-  // Focus search input when opened
   useEffect(() => {
     if (searchOpen && searchInputRef.current) {
       searchInputRef.current.focus();
@@ -59,42 +55,57 @@ export function SiteHeader() {
 
   const tone = scrolled || isLightPage ? "text-forest-deep" : "text-ivory";
   
-  // Further reduced padding (py-2 and py-3) for a slimmer, more refined navbar layout
+  // Increased navbar height/padding slightly for mobile & desktop elegance
   const headerBg = scrolled 
-    ? "bg-ivory/95 backdrop-blur-lg border-b border-border py-2 shadow-sm" 
-    : "bg-transparent border-b border-transparent py-3";
+    ? "bg-ivory/95 backdrop-blur-lg border-b border-border py-3.5 md:py-3 shadow-sm" 
+    : "bg-transparent border-b border-transparent py-4 md:py-4";
 
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${headerBg}`}>
       <div className="mx-auto flex max-w-screen-2xl items-center justify-between px-6 md:px-12">
         
-        {/* Left Nav */}
-        <nav className="hidden flex-1 items-center gap-10 md:flex">
-          {leftLinks.map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
-              className={`text-[0.65rem] uppercase tracking-[0.35em] transition-colors duration-500 hover:text-gold relative py-1 ${tone}`}
-              activeProps={{ className: "text-gold font-medium after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-gold" }}
-            >
-              {l.label}
-            </Link>
-          ))}
-        </nav>
+        {/* Left Nav (Desktop) / Left-aligned Logo (Mobile) */}
+        <div className="flex flex-1 items-center justify-start">
+          <nav className="hidden items-center gap-10 md:flex">
+            {leftLinks.map((l) => (
+              <Link
+                key={l.to}
+                to={l.to}
+                className={`text-[0.65rem] uppercase tracking-[0.35em] transition-colors duration-500 hover:text-gold relative py-1 ${tone}`}
+                activeProps={{ className: "text-gold font-medium after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-gold" }}
+              >
+                {l.label}
+              </Link>
+            ))}
+          </nav>
 
-        {/* Center Logo with Image (Reduced width sizing) */}
-        <Link to="/" className="flex flex-1 flex-col items-center justify-center leading-none text-center z-50 relative group" aria-label="Ayurway home">
-          <img
-            src={logo}
-            alt="Ayurway by Ishara Sandamini"
-            className={`w-[140px] transition-all duration-700 md:w-[170px] ${
-              scrolled || isLightPage ? "" : "brightness-0 invert"
-            }`}
-          />
-        </Link>
+          {/* Mobile Logo: Left-aligned */}
+          <Link to="/" className="flex flex-col md:hidden leading-none z-50 relative group" aria-label="Ayurway home">
+            <img
+              src={logo}
+              alt="Ayurway by Ishara Sandamini"
+              className={`w-[130px] transition-all duration-700 ${
+                scrolled || isLightPage ? "" : "brightness-0 invert"
+              }`}
+            />
+          </Link>
+        </div>
+
+        {/* Center Logo with Image (Desktop Only) */}
+        <div className="hidden md:flex flex-1 flex-col items-center justify-center leading-none text-center z-50 relative group">
+          <Link to="/" aria-label="Ayurway home">
+            <img
+              src={logo}
+              alt="Ayurway by Ishara Sandamini"
+              className={`w-[170px] transition-all duration-700 ${
+                scrolled || isLightPage ? "" : "brightness-0 invert"
+              }`}
+            />
+          </Link>
+        </div>
 
         {/* Right Actions */}
-        <div className="flex flex-1 items-center justify-end gap-6 md:gap-8">
+        <div className="flex flex-1 items-center justify-end gap-5 md:gap-8">
           
           {/* Dynamic Search (Hidden in mobile view completely using hidden md:flex) */}
           <div className="hidden md:flex items-center relative">
